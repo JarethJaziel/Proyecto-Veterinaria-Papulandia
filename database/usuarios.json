@@ -33,5 +33,14 @@
         "contrasena": "123",
         "telefono": "99999999",
         "tipo": "cliente"
+    },
+    {
+        "idUsuario": 5,
+        "nombres": "juan pablo",
+        "apellidos": "Ucan Pech",
+        "correo": "correo@juan",
+        "contrasena": "123",
+        "telefono": "999999",
+        "tipo": "cliente"
     }
 ]
