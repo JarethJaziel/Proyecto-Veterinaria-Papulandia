@@ -1,3 +1,30 @@
 body.home{
     padding-top: 70px;
 }   
+
+#carousel-animals{
+    padding-top: 40px;
+    max-width: 70%;
+    margin: 0 auto;
+}
+
+:root {
+  --color-principal: #2e8b57; /* verde Papulandia */
+  --color-secundario: #ffc107;
+  --color-fondo: #f8f9fa;
+}
+
+#main-nav {
+  background-color: var(--color-fondo);
+  border-bottom: 2px solid var(--color-principal);
+}
+
+#main-nav .navbar-brand {
+  font-weight: bold;
+  color: var(--color-principal);
+}
+
+footer {
+  background-color: var(--color-principal);
+  color: white;
+}

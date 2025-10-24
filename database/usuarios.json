@@ -1,0 +1,28 @@
+[
+    {
+        "idUsuario": 1,
+        "nombres": "Jareth Jaziel",
+        "apellidos": "Moo Pan",
+        "correo": "jarethmoo@gmail.com",
+        "contrasena": "12345",
+        "tipo": "admin"
+    },
+    {
+        "idUsuario": 2,
+        "nombres": "brawl",
+        "apellidos": "no",
+        "correo": "brawl@nub",
+        "contrasena": "123",
+        "telefono": "123",
+        "tipo": "cliente"
+    },
+    {
+        "idUsuario": 3,
+        "nombres": "papupro",
+        "apellidos": "cuevas",
+        "correo": "a@e",
+        "contrasena": "12344444",
+        "telefono": "3422332",
+        "tipo": "cliente"
+    }
+]

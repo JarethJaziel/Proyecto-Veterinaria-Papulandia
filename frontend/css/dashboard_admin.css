@@ -1,0 +1,17 @@
+body {
+  background-color: #f5f5f5;
+  margin-top: 80px;
+  font-family: "Poppins", sans-serif;
+}
+
+.card-dashboard {
+  border-radius: 10px;
+  border-left: 5px solid var(--color-principal);
+  background-color: white;
+  transition: all 0.3s;
+}
+
+.card-dashboard:hover {
+  background-color: #e9f7ef;
+  transform: translateY(-3px);
+}

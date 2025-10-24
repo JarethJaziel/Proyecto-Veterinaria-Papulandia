@@ -1,0 +1,82 @@
+
+:root {
+  --color-principal: #2e8b57; /* Verde Papulandia */
+  --color-secundario: #ffc107;
+  --color-fondo: #f9fcfa;
+  --color-texto: #333;
+}
+
+body.login-body {
+  background: var(--color-fondo);
+  font-family: 'Poppins', sans-serif;
+  color: var(--color-texto);
+  margin: 0;
+}
+body.login-body.register {
+  padding-top: 80px; /* evita que el nav tape el título */
+}
+
+
+h1, h2, h3 {
+  color: var(--color-principal);
+  text-align: center;
+  font-weight: 600;
+}
+
+
+/* Navbar */
+#main-nav {
+  background-color: #fff;
+  border-bottom: 2px solid var(--color-principal);
+}
+
+#main-nav .navbar-brand {
+  color: var(--color-principal) !important;
+}
+
+#main-nav .nav-link {
+  color: var(--color-texto);
+}
+
+#main-nav .nav-link:hover {
+  color: var(--color-principal);
+}
+
+/* Tarjeta del formulario */
+.card {
+  border: none;
+  border-radius: 15px;
+  background-color: white;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+}
+
+/* Botones */
+.btn-success {
+  background-color: var(--color-principal);
+  border: none;
+}
+
+.btn-success:hover {
+  background-color: #256b45;
+}
+
+.btn-secundary {
+  color: var(--color-principal);
+  background: none;
+  border: none;
+  font-weight: 500;
+  text-decoration: none;
+  transition: all 0.2s ease-in-out;
+}
+
+.btn-secundary:hover {
+  color: var(--color-principal);
+  text-decoration: underline;
+}
+
+
+/* Footer */
+footer {
+  background-color: var(--color-principal);
+  color: white;
+}
