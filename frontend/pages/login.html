@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Iniciar sesión - Veterinaria Papulandia</title>
+    <link rel="stylesheet" href="../css/styles.css">
+    <link rel="stylesheet" href="../css/reset.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+</head>
+<body class="login-body">
+
+    <header>
+        <nav class="navbar navbar-expand-lg bg-white shadow-sm fixed-top">
+        <div class="container">
+            <a class="navbar-brand fw-bold text-primary" href="../index.html">Papulandia</a>
+            <ul class="navbar-nav ms-auto">
+            <li class="nav-item"><a class="nav-link" href="../index.html">Inicio</a></li>
+            </ul>
+        </div>
+        </nav>
+    </header>
+
+    <main class="d-flex justify-content-center align-items-center vh-100">
+        <div class="card shadow p-4" style="width: 100%; max-width: 400px;">
+        <h2 class="text-center mb-4 text-primary">Iniciar sesión</h2>
+
+        <form action="../../backend/api/login.php" method="POST">
+            <div class="mb-3">
+            <label for="email" class="form-label">Correo electrónico:</label>
+            <input type="email" id="email" name="email" class="form-control" placeholder="ejemplo@correo.com" required>
+            </div>
+
+            <div class="mb-3">
+            <label for="password" class="form-label">Contraseña:    </label>
+            <input type="password" id="password" name="password" class="form-control" placeholder="********" required>
+            </div>
+
+            <button type="submit" class="btn btn-primary w-100">Iniciar sesión</button>
+
+            <p class="text-center mt-3">¿Eres nuevo por aquí?</p>
+            <a href="createAcc.html" class="btn btn-outline-primary w-100">Registrarse</a>
+        </form>
+        </div>
+    </main>
+
+    <footer class="text-center py-3 bg-dark text-light">
+        <p class="mb-0">&copy; 2025 Veterinaria Papulandia. Todos los derechos reservados.</p>
+    </footer>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+</body>
+</html>
