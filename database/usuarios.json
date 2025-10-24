@@ -24,5 +24,14 @@
         "contrasena": "12344444",
         "telefono": "3422332",
         "tipo": "cliente"
+    },
+    {
+        "idUsuario": 4,
+        "nombres": "Mau",
+        "apellidos": "Dzay",
+        "correo": "soyun@tonto",
+        "contrasena": "123",
+        "telefono": "99999999",
+        "tipo": "cliente"
     }
 ]
