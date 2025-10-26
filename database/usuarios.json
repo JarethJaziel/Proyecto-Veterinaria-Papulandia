@@ -51,5 +51,23 @@
         "contrasena": "test1",
         "telefono": "test1",
         "tipo": "cliente"
+    },
+    {
+        "idUsuario": 7,
+        "nombres": "a",
+        "apellidos": "a",
+        "correo": "a@a",
+        "contrasena": "a",
+        "telefono": "",
+        "tipo": "cliente"
+    },
+    {
+        "idUsuario": 8,
+        "nombres": "a",
+        "apellidos": "a",
+        "correo": "a@2",
+        "contrasena": "2",
+        "telefono": "2",
+        "tipo": "cliente"
     }
 ]
