@@ -3,121 +3,327 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Veterinaria Papulandia</title>
-
-    <link rel="stylesheet" href="css/styles.css">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" rel="stylesheet"> 
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <title>Papulandia</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- iconos -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #9fad93;
+            --secondary-color: #accbdd;
+            --accent-color: #5f838a;
+            --dark-color: #121212;
+            --light-color: #f4f5f7;
+        }
+        
+        body {
+            font-family: "MS Sans Serif", Geneva, sans-serif;
+        }
+        
+        .navbar-brand img {
+            max-height: 60px;
+        }
+        
+        .navbar-nav .nav-link {
+            color: #fff;
+            font-weight: 500;
+            margin: 0 10px;
+        }
+        
+        .navbar-nav .nav-link:hover {
+            color: #595959;
+        }
+        
+        .hero-section {
+            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://zoohabitat.com/wp-content/uploads/2024/02/banner-home-1.jpg');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            padding: 150px 0;
+            text-align: center;
+        }
+        
+        .service-card {
+            text-align: center;
+            padding: 20px;
+            margin-bottom: 30px;
+            transition: transform 0.3s;
+        }
+        
+        .service-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .service-icon {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin: 0 auto 20px;
+            border: 3px solid #ddd;
+        }
+        
+        .contact-section {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 60px 0;
+        }
+        
+        .contact-icon {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 15px;
+        }
+        
+        .btn-primary {
+            background-color: var(--primary-color);
+            border-color: var(--primary-color);
+        }
+        
+        .btn-primary:hover {
+            background-color: var(--secondary-color);
+            border-color: var(--secondary-color);
+        }
+        
+        .btn-accent {
+            background-color: var(--accent-color);
+            
+            color: white;
+        }
+        
+        .btn-accent:hover {
+            background-color: var(--primary-color);
+            
+            color: white;
+        }
+        
+        footer {
+            background-color: #353535;
+            color: white;
+            padding: 40px 0 20px;
+        }
+        
+        .footer-links a {
+            color: white;
+            text-decoration: none;
+            margin: 0 10px;
+        }
+        
+        .footer-links a:hover {
+            color: #2192ca;
+        }
+    </style>
 </head>
-<body class="home">
-    <header>
-        <nav id="main-nav" class="navbar navbar-expand-lg bg-body-tertiary fixed-top">
-        <div class="container-fluid">
-            <a class="navbar-brand" href="index.html">Papulandia</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
+<body>
+    <!-- Nav -->
+    <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #8bbda6;">
+        <div class="container">
+            <a class="navbar-brand" href="#">
+                <img src="https://cdn-icons-png.flaticon.com/512/403/403890.png" alt="Zoo Habitat">
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav">
-                <li class="nav-item">
-                <a class="nav-link" href="#inicio">Inicio</a>
-                </li>
-                <li class="nav-item">
-                <a class="nav-link" href="#servicios">Servicios</a>
-                </li>
-                <li class="nav-item">
-                <a class="nav-link" href="#contacto">Contacto</a>
-                </li>
-            </ul>
-
-            <ul class="navbar-nav ms-auto">
-                <li class="nav-item">
-                <a href="../backend/api/checkSession.php" class="btn btn-outline-success">
-                    <i class="bi bi-box-arrow-in-right"></i> 
-                    Dashboard
-                </a>
-                </li>
-            </ul>
-            </ul>
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="#">Inicio</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Servicios</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Nosotros</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Contáctanos</a>
+                    </li>
+                </ul>
             </div>
         </div>
-        </nav>
-    </header>
+    </nav>
 
-    <section id="inicio" class="hero text-center p-5 bg-light">
+    <!-- Banner Principal -->
+    <section class="hero-section">
         <div class="container">
-        <h2>Cuidamos a tus mascotas con amor y experiencia</h2>
-        <p>En Papulandia, ofrecemos atención veterinaria integral para garantizar el bienestar de tu mejor amigo.</p>
-        <a href="#servicios" class="btn btn-success">Ver servicios</a>
-        </div>
-        <div id="carousel-animals" class="carousel slide" data-bs-ride="carousel">
-        <div class="carousel-inner">
-            <div class="carousel-item active" data-bs-interval="10000">
-            <img src="resources/carruselIndex1.jpg" class="d-block w-100" alt="...">
+            <h1 class="display-4 mb-4">"Sabemos que son parte de la familia"</h1>
+            <p class="lead mb-4">Es por eso que ofrecemos atención médica las 24hrs</p>
+            <div class="row justify-content-center">
+                <div class="col-md-3 mb-3">
+                    <a href="../backend/api/checkSession.php" class="btn btn-primary btn-lg w-100">Contáctanos</a>
+                </div>
+                <div class="col-md-3 mb-3">
+                    <a href="#" class="btn btn-primary btn-lg w-100">Servicios</a>
+                </div>
             </div>
-            <div class="carousel-item" data-bs-interval="2000">
-            <img src="resources/carruselIndex2.jpg" class="d-block w-100" alt="...">
-            </div>
-            <div class="carousel-item" data-bs-interval="2000">
-            <img src="resources/carruselIndex3.jpg" class="d-block w-100" alt="...">
-            </div>
-            <div class="carousel-item">
-            <img src="resources/martin.png" class="d-block w-100" alt="...">
-            </div>
-        </div>
-        <button class="carousel-control-prev" type="button" data-bs-target="#carousel-animals" data-bs-slide="prev">
-            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Previous</span>
-        </button>
-        <button class="carousel-control-next" type="button" data-bs-target="#carousel-animals" data-bs-slide="next">
-            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Next</span>
-        </button>
         </div>
     </section>
 
-    <section id="servicios" class="py-5">
+    <!-- Servicios -->
+    <section class="py-5">
         <div class="container">
-        <h2 class="text-center mb-4">Nuestros Servicios</h2>
-        <div class="row g-4">
-            <div class="col-md-4">
-            <div class="card h-100 p-3">
-                <h3>Consultas generales</h3>
-                <p>Revisiones y diagnóstico de salud para todo tipo de mascotas.</p>
+            <h2 class="text-center mb-5" style="color: var(--primary-color);">Nuestros Servicios</h2>
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="service-card">
+                        <img src="https://zoohabitat.com/wp-content/uploads/2024/02/atencion-medica-1-1277x1277.jpg" alt="Atención médica" class="service-icon">
+                        <h3 style="color: var(--primary-color);">Atención médica</h3>
+                        <p style="color: #595959;">Ofrecemos atención médica las 24 horas</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="service-card">
+                        <img src="https://zoohabitat.com/wp-content/uploads/2024/02/tienda-1-721x721.jpg" alt="Tienda" class="service-icon">
+                        <h3 style="color: var(--primary-color);">Tienda</h3>
+                        <p style="color: #595959;">Ofrecemos una gran variedad de accesorios</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="service-card">
+                        <img src="https://zoohabitat.com/wp-content/uploads/2024/02/estetica-1-400x400.webp" alt="Estética" class="service-icon">
+                        <h3 style="color: var(--primary-color);">Estética</h3>
+                        <p style="color: #595959;">La limpieza también es parte de la salud</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="service-card">
+                        <img src="https://zoohabitat.com/wp-content/uploads/2024/02/estancias-300x300.jpg" alt="Estancia" class="service-icon">
+                        <h3 style="color: var(--primary-color);">Estancia</h3>
+                        <p style="color: #595959;">Los cuidamos como en casa cuando tengas que salir</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="service-card">
+                        <img src="https://zoohabitat.com/wp-content/uploads/2024/02/SAD-bannesrs-434x434.jpg" alt="Servicio a domicilio" class="service-icon">
+                        <h3 style="color: var(--primary-color);">Servicio a domicilio</h3>
+                        <p style="color: #595959;">Nosotros vamos por tu mascotita o te llevamos lo que necesites</p>
+                    </div>
+                </div>
             </div>
-            </div>
-            <div class="col-md-4">
-            <div class="card h-100 p-3">
-                <h3>Vacunación</h3>
-                <p>Aplicación de vacunas preventivas para mantener a tu mascota protegida.</p>
-            </div>
-            </div>
-            <div class="col-md-4">
-            <div class="card h-100 p-3">
-                <h3>Emergencias 24/7</h3>
-                <p>Atención médica inmediata a cualquier hora del día o la noche.</p>
-            </div>
-            </div>
-        </div>
         </div>
     </section>
 
-    <section id="contacto" class="bg-light py-5">
-        <div class="container text-center">
-        <h2>Contáctanos</h2>
-        <p>📍 Calle Principal #123, Ciudad Papupro</p>
-        <p>📞 Tel: (555) 123-4567</p>
-        <p>✉️ contacto@papulandia.com</p>
+    <!-- Conoce -->
+    <section class="py-5" style="background-color: var(--secondary-color)">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-md-6">
+                    <img src="resources/index/conoce1.png" alt="Veterinario a domicilio" class="img-fluid">
+                </div>
+                <div class="col-md-6">
+                    <h2 class="text-white mb-4">asdfasdfasdfasdfasd</h2>
+                    <p class="text-white mb-4">Lorem ipsum dolor sit amet consectetur adipisicing elit. Saepe ipsum maxime similique explicabo totam fuga sed sint omnis odio hic! Numquam nisi assumenda at cum unde ullam dolorum ratione facere.</p>
+                    <a href="#" class="btn btn-accent btn-lg">¡Conoce más!</a>
+                </div>
+            </div>
         </div>
     </section>
 
-    <footer class="text-center p-3 bg-dark text-light">
+    <!-- Contacto -->
+    <section class="contact-section">
         <div class="container">
-        <p>&copy; 2025 Veterinaria Papulandia. Todos los derechos reservados.</p>
+            <h2 class="text-center mb-5">Contáctanos</h2>
+            <div class="row text-center">
+                <div class="col-md-4 mb-4">
+                    <img src="resources/index/contactanos1.png" alt="Estetoscopio" class="contact-icon">
+                    <h4 style="color: var(--accent-color);">999 421 0525</h4>
+                    <p>Línea de seguimiento</p>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <img src="resources/index/contactanos2.png" alt="Icono teléfono" class="contact-icon">
+                    <h4 style="color: var(--accent-color);">999 421 0525</h4>
+                    <p>Agenda tu cita</p>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <img src="resources/index/contactanos3.png" alt="Corazón" class="contact-icon">
+                    <h4 style="color: var(--accent-color);">999 421 0525</h4>
+                    <p>Emergencias</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Mapa -->
+    <section class="py-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8 mb-4">
+                    <div class="ratio ratio-16x9">
+                        <iframe src="https://www.google.com/maps/embed?pb=!1m17!1m12!1m3!1d3726.679295247292!2d-89.60993572474624!3d20.925218580698417!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m2!1m1!2zMjDCsDU1JzMwLjgiTiA4OcKwMzYnMjYuNSJX!5e0!3m2!1ses!2smx!4v1761482761835!5m2!1ses!2smx" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <h3 style="color: var(--primary-color);">C. 55 205, Fraccionamiento del Sur, 97287 Mérida, Yuc.</h3>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <h4>Disponibles 24/7</h4>
+                    <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Voluptatem molestias quo facilis corrupti magni ab soluta ducimus, obcaecati dignissimos, consequuntur iste provident modi fugiat. Molestiae repellendus cum architecto repellat nam!.</p>
+                    <h4 style="color: var(--secondary-color);"><a href="tel:999 421 0525" class="text-decoration-none" style="color: var(--secondary-color);">999 421 0525</a></h4>
+                </div>
+                <div class="col-md-6">
+                    <h4>Encuéntranos</h4>
+                    <p>C. 55 205, Fraccionamiento del Sur, 97287 Mérida, Yuc.</p>
+                    <div class="social-icons mt-3">
+                        <a href="#" class="text-white me-3"><i class="fab fa-facebook fa-2x"></i></a>
+                        <a href="#" class="text-white me-3"><i class="fab fa-instagram fa-2x"></i></a>
+                        <a href="#" class="text-white me-3"><i class="fab fa-youtube fa-2x"></i></a>
+                    </div>
+                </div>
+            </div>
+            <hr class="my-4" style="border-color: #383838;">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="footer-links">
+                        <a href="#">Términos y Condiciones</a>
+                        <a href="#">Blog</a>
+                        <a href="#">Políticas de Privacidad</a>
+                    </div>
+                </div>
+                <div class="col-md-6 text-md-end">
+                    <p>Papulandia</p>
+                </div>
+            </div>
         </div>
     </footer>
 
-    <script src="js/main.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+    <!-- Bootstrap JS y jQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <script>
+        $(document).ready(function() {
+            // Animación suave al hacer scroll
+            $('a[href^="#"]').on('click', function(event) {
+                var target = $(this.getAttribute('href'));
+                if(target.length) {
+                    event.preventDefault();
+                    $('html, body').stop().animate({
+                        scrollTop: target.offset().top - 70
+                    }, 1000);
+                }
+            });
+            
+            // Efecto de aparición para las tarjetas de servicio
+            $(window).scroll(function() {
+                $('.service-card').each(function() {
+                    var position = $(this).offset().top;
+                    var scrollPosition = $(window).scrollTop() + $(window).height();
+                    
+                    if (position < scrollPosition) {
+                        $(this).addClass('animate__animated animate__fadeInUp');
+                    }
+                });
+            });
+        });
+    </script>
 </body>
 </html>

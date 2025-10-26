@@ -26,3 +26,29 @@ $('#loginForm').on('submit', function(e) {
     }
   });
 });
+
+
+ $(document).ready(function() {
+            // visibilidad de contraseña
+            $('#togglePassword').click(function() {
+                const passwordField = $('#password');
+                const type = passwordField.attr('type') === 'password' ? 'text' : 'password';
+                passwordField.attr('type', type);
+                
+                
+                $(this).find('i').toggleClass('fa-eye fa-eye-slash');
+            });
+            
+            // iniciar sesión con Google
+            $('.btn-google').click(function() {
+                alert('Redirigiendo a Google para autenticación...');
+                // falta agregar esta cosa, suerte jareth 
+            });
+            
+            // Cuando le picas se cambia el color del borde
+            $('.form-control').focus(function() {
+                $(this).parent().addClass('focused');
+            }).blur(function() {
+                $(this).parent().removeClass('focused');
+            });
+        });

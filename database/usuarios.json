@@ -42,5 +42,14 @@
         "contrasena": "123",
         "telefono": "999999",
         "tipo": "cliente"
+    },
+    {
+        "idUsuario": 6,
+        "nombres": "test1",
+        "apellidos": "test1",
+        "correo": "test1@asd",
+        "contrasena": "test1",
+        "telefono": "test1",
+        "tipo": "cliente"
     }
 ]
