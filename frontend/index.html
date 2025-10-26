@@ -198,31 +198,6 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     
-    <script>
-        $(document).ready(function() {
-            // Animación suave al hacer scroll
-            $('a[href^="#"]').on('click', function(event) {
-                var target = $(this.getAttribute('href'));
-                if(target.length) {
-                    event.preventDefault();
-                    $('html, body').stop().animate({
-                        scrollTop: target.offset().top - 70
-                    }, 1000);
-                }
-            });
-            
-            // Efecto de aparición para las tarjetas de servicio
-            $(window).scroll(function() {
-                $('.service-card').each(function() {
-                    var position = $(this).offset().top;
-                    var scrollPosition = $(window).scrollTop() + $(window).height();
-                    
-                    if (position < scrollPosition) {
-                        $(this).addClass('animate__animated animate__fadeInUp');
-                    }
-                });
-            });
-        });
-    </script>
+   
 </body>
 </html>
