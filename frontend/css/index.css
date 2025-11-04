@@ -1,0 +1,104 @@
+ :root {
+            --primary-color: #9fad93;
+            --secondary-color: #accbdd;
+            --accent-color: #5f838a;
+            --dark-color: #121212;
+            --light-color: #f4f5f7;
+        }
+        
+        body {
+            font-family: "MS Sans Serif", Geneva, sans-serif;
+        }
+        
+        .navbar-brand img {
+            max-height: 60px;
+        }
+        
+        .navbar-nav .nav-link {
+            color: #fff;
+            font-weight: 500;
+            margin: 0 10px;
+        }
+        
+        .navbar-nav .nav-link:hover {
+            color: #595959;
+        }
+        
+        .hero-section {
+            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://zoohabitat.com/wp-content/uploads/2024/02/banner-home-1.jpg');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            padding: 150px 0;
+            text-align: center;
+        }
+        
+        .service-card {
+            text-align: center;
+            padding: 20px;
+            margin-bottom: 30px;
+            transition: transform 0.3s;
+        }
+        
+        .service-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .service-icon {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin: 0 auto 20px;
+            border: 3px solid #ddd;
+        }
+        
+        .contact-section {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 60px 0;
+        }
+        
+        .contact-icon {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 15px;
+        }
+        
+        .btn-primary {
+            background-color: var(--primary-color);
+            border-color: var(--primary-color);
+        }
+        
+        .btn-primary:hover {
+            background-color: var(--secondary-color);
+            border-color: var(--secondary-color);
+        }
+        
+        .btn-accent {
+            background-color: var(--accent-color);
+            
+            color: white;
+        }
+        
+        .btn-accent:hover {
+            background-color: var(--primary-color);
+            
+            color: white;
+        }
+        
+        footer {
+            background-color: #353535;
+            color: white;
+            padding: 40px 0 20px;
+        }
+        
+        .footer-links a {
+            color: white;
+            text-decoration: none;
+            margin: 0 10px;
+        }
+        
+        .footer-links a:hover {
+            color: #2192ca;
+        }

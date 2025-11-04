@@ -1,17 +1,257 @@
-body {
-  background-color: #f5f5f5;
-  margin-top: 80px;
-  font-family: "Poppins", sans-serif;
-}
-
-.card-dashboard {
-  border-radius: 10px;
-  border-left: 5px solid var(--color-principal);
-  background-color: white;
-  transition: all 0.3s;
-}
-
-.card-dashboard:hover {
-  background-color: #e9f7ef;
-  transform: translateY(-3px);
-}
+:root {
+            --primary-color: #9fad93;
+            --secondary-color: #accbdd;
+            --accent-color: #5f838a;
+            --dark-color: #121212;
+            --light-color: #f4f5f7;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            min-height: 100vh;
+        }
+        
+        /* Navbar estilo similar al index */
+        .navbar {
+            background: linear-gradient(to right, var(--primary-color), #a8d5ba) !important;
+            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .navbar-brand {
+            font-weight: bold;
+            color: white !important;
+        }
+        
+        .navbar-brand img {
+            height: 40px;
+            margin-right: 10px;
+        }
+        
+        .navbar-nav .nav-link {
+            color: rgba(255, 255, 255, 0.9) !important;
+            font-weight: 500;
+            margin: 0 5px;
+            transition: all 0.3s;
+        }
+        
+        .navbar-nav .nav-link:hover {
+            color: white !important;
+            transform: translateY(-2px);
+        }
+        
+        .user-info {
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 20px;
+            padding: 8px 15px;
+            margin-right: 15px;
+        }
+        
+        /* Main content */
+        .dashboard-header {
+            background: linear-gradient(135deg, #2c3e50, #34495e);
+            color: white;
+            padding: 80px 0 40px;
+            margin-top: 56px;
+            text-align: center;
+        }
+        
+        .dashboard-header h1 {
+            font-weight: 700;
+            margin-bottom: 15px;
+        }
+        
+        .dashboard-header p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+        
+        /* Cards de dashboard */
+        .dashboard-card {
+            border: none;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            overflow: hidden;
+            margin-bottom: 30px;
+            height: 100%;
+        }
+        
+        .dashboard-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+        }
+        
+        .card-icon {
+            font-size: 3rem;
+            margin-bottom: 20px;
+        }
+        
+        .card-appointments {
+            border-top: 5px solid #3498db;
+        }
+        
+        .card-appointments .card-icon {
+            color: #3498db;
+        }
+        
+        .card-clients {
+            border-top: 5px solid #e74c3c;
+        }
+        
+        .card-clients .card-icon {
+            color: #e74c3c;
+        }
+        
+        .card-pets {
+            border-top: 5px solid #2ecc71;
+        }
+        
+        .card-pets .card-icon {
+            color: #2ecc71;
+        }
+        
+        .card-reports {
+            border-top: 5px solid #f39c12;
+        }
+        
+        .card-reports .card-icon {
+            color: #f39c12;
+        }
+        
+        .card-users {
+            border-top: 5px solid #9b59b6;
+        }
+        
+        .card-users .card-icon {
+            color: #9b59b6;
+        }
+        
+        .card-settings {
+            border-top: 5px solid #1abc9c;
+        }
+        
+        .card-settings .card-icon {
+            color: #1abc9c;
+        }
+        
+        .btn-dashboard {
+            background: linear-gradient(to right, #2c3e50, #34495e);
+            border: none;
+            border-radius: 10px;
+            color: white;
+            padding: 10px 25px;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+        
+        .btn-dashboard:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            color: white;
+        }
+        
+        /* Estadísticas rápidas */
+        .stats-section {
+            background: white;
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+            margin-bottom: 30px;
+        }
+        
+        .stat-card {
+            text-align: center;
+            padding: 20px;
+            border-radius: 15px;
+            background: #f8f9fa;
+            transition: all 0.3s;
+        }
+        
+        .stat-card:hover {
+            background: white;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 5px;
+        }
+        
+        .stat-appointments {
+            color: #3498db;
+        }
+        
+        .stat-clients {
+            color: #e74c3c;
+        }
+        
+        .stat-pets {
+            color: #2ecc71;
+        }
+        
+        .stat-revenue {
+            color: #f39c12;
+        }
+        
+        /* Tabla de citas recientes */
+        .table-section {
+            background: white;
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+            margin-bottom: 30px;
+        }
+        
+        .table th {
+            border: none;
+            background: #f8f9fa;
+            font-weight: 600;
+            color: #2c3e50;
+        }
+        
+        .table td {
+            border: none;
+            padding: 15px;
+            vertical-align: middle;
+        }
+        
+        .table tbody tr {
+            transition: all 0.3s;
+        }
+        
+        .table tbody tr:hover {
+            background: #f8f9fa;
+        }
+        
+        .badge-pending {
+            background: #f39c12;
+        }
+        
+        .badge-confirmed {
+            background: #2ecc71;
+        }
+        
+        .badge-cancelled {
+            background: #e74c3c;
+        }
+        
+        /* Footer */
+        footer {
+            background: #343a40;
+            color: white;
+            padding: 30px 0 20px;
+            margin-top: 50px;
+        }
+        
+        .footer-links a {
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            margin: 0 10px;
+            transition: all 0.3s;
+        }
+        
+        .footer-links a:hover {
+            color: white;
+        }

@@ -42,5 +42,41 @@
         "contrasena": "123",
         "telefono": "999999",
         "tipo": "cliente"
+    },
+    {
+        "idUsuario": 6,
+        "nombres": "test1",
+        "apellidos": "test1",
+        "correo": "test1@asd",
+        "contrasena": "test1",
+        "telefono": "test1",
+        "tipo": "cliente"
+    },
+    {
+        "idUsuario": 7,
+        "nombres": "a",
+        "apellidos": "a",
+        "correo": "a@a",
+        "contrasena": "a",
+        "telefono": "",
+        "tipo": "cliente"
+    },
+    {
+        "idUsuario": 8,
+        "nombres": "a",
+        "apellidos": "a",
+        "correo": "a@2",
+        "contrasena": "2",
+        "telefono": "2",
+        "tipo": "cliente"
+    },
+    {
+        "idUsuario": 9,
+        "nombres": "sara",
+        "apellidos": "nub",
+        "correo": "sara@nub",
+        "contrasena": "123",
+        "telefono": "",
+        "tipo": "cliente"
     }
 ]

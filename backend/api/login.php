@@ -1,23 +1,22 @@
 <?php
-require_once '../model/Usuario.php';
-require_once '../model/Cliente.php';
-require_once '../model/Administrador.php';
-
+ini_set('session.cookie_path', '/');
 session_start();
 header('Content-Type: application/json');
 
 $dataFile = '../../database/usuarios.json';
 if (!file_exists($dataFile)) {
-    file_put_contents($dataFile, json_encode([]));
+    // Es mejor crear un JSON vacío válido (un array u objeto)
+    file_put_contents($dataFile, json_encode([])); 
 }
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $correo = $_POST['email'] ?? '';
-    $contrasena = $_POST['password'] ?? '';
+    $contrasena = $_POST['contrasena'] ?? '';
 
     if (empty($correo) || empty($contrasena)) {
+        http_response_code(400); 
         echo json_encode(["success" => false, "message" => "Correo o contraseña vacíos."]);
-        exit;
+        exit; 
     }
 
     $usuarios = json_decode(file_get_contents($dataFile), true);
@@ -31,38 +30,28 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 
     if ($usuarioEncontrado) {
-        if ($usuarioEncontrado['tipo'] === 'cliente') {
-            $userObj = new Cliente(
-                $usuarioEncontrado['nombres'],
-                $usuarioEncontrado['apellidos'],
-                $usuarioEncontrado['correo'],
-                $usuarioEncontrado['contrasena'],
-                $usuarioEncontrado['telefono'],
-                
-            );
-        } else if ($usuarioEncontrado['tipo'] === 'admin') {
-            $userObj = new Administrador(
-                $usuarioEncontrado['nombres'],
-                $usuarioEncontrado['apellidos'],
-                $usuarioEncontrado['correo'],
-                $usuarioEncontrado['contrasena']
-            );
-        } else {
-            $userObj = null;
-        }
-
-        $userObj->setIdUsuario($usuarioEncontrado['idUsuario']);
         $_SESSION['usuario'] = [
             "id" => $usuarioEncontrado['idUsuario'],
             "nombre" => $usuarioEncontrado['nombres'],
             "tipo" => $usuarioEncontrado['tipo']
         ];
+        session_write_close();
+        echo json_encode([
+            "success" => true, 
+            "message" => "Inicio de sesión exitoso.", 
+            "tipo" => $usuarioEncontrado['tipo']
+        ]);
+        exit;
 
-        echo json_encode(["success" => true, "message" => "Inicio de sesión exitoso.", "tipo" => $usuarioEncontrado['tipo']]);
     } else {
+        http_response_code(401);
         echo json_encode(["success" => false, "message" => "Correo o contraseña incorrectos."]);
+        exit;
     }
+
 } else {
+    http_response_code(405);
     echo json_encode(["success" => false, "message" => "Método no permitido."]);
+    exit;
 }
 ?>
