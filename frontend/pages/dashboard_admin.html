@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Panel del Administrador - Papulandia</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Iconos -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="../css/dashboard_admin.css">
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="../../index.php">
+                <img src="https://cdn-icons-png.flaticon.com/512/403/403890.png" alt="Papulandia">
+                Papulandia
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto align-items-center">
+                    <li class="nav-item">
+                        <span class="user-info">
+                            <i class="bi bi-person-circle me-1"></i>
+                            <span id="navbarUsername"></span>
+                            <span id="navbarUserType"></span>
+                        </span>
+                    </li>
+                    <li class="nav-item">
+                        <a href="../../backend/api/logout.php" class="btn btn-outline-light">
+                            <i class="bi bi-box-arrow-right"></i> Cerrar sesión
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Header del Dashboard -->
+    <div class="dashboard-header">
+        <div class="container">
+            <h1>Panel de Administración</h1>
+            <p>Gestiona todos los aspectos de la veterinaria Papulandia</p>
+        </div>
+    </div>
+
+    <!-- Contenido Principal -->
+    <main class="container py-5">
+        <!-- Estadísticas Rápidas -->
+        <div class="stats-section">
+            <h3 class="mb-4">Resumen General</h3>
+            <div class="row g-4">
+                <div class="col-md-4 col-sm-6">
+                    <div class="stat-card">
+                        <div class="stat-number stat-appointments">0</div>
+                        <div class="stat-label">Citas Hoy</div>
+                        <small class="text-muted">+0 desde ayer</small>
+                    </div>
+                </div>
+                <div class="col-md-4 col-sm-6">
+                    <div class="stat-card">
+                        <div class="stat-number stat-clients">0</div>
+                        <div class="stat-label">Clientes Activos</div>
+                        <small class="text-muted">Total registrados</small>
+                    </div>
+                </div>
+                <div class="col-md-4 col-sm-6">
+                    <div class="stat-card">
+                        <div class="stat-number stat-pets">0</div>
+                        <div class="stat-label">Mascotas</div>
+                        <small class="text-muted">En el sistema</small>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+
+        <!-- Panel de opciones -->
+        <div class="row g-4 mb-5">
+            <div class="col-md-4">
+                <div class="dashboard-card card-appointments">
+                    <div class="card-body text-center p-4">
+                        <div class="card-icon">
+                            <i class="fas fa-calendar-alt"></i>
+                        </div>
+                        <h5 class="card-title">Gestionar Citas</h5>
+                        <p class="card-text text-muted">Ver, editar y administrar todas las citas</p>
+                        <a href="ver_citas.php" class="btn btn-dashboard">Administrar Citas</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="dashboard-card card-clients">
+                    <div class="card-body text-center p-4">
+                        <div class="card-icon">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <h5 class="card-title">Gestionar Clientes</h5>
+                        <p class="card-text text-muted">Administrar información de clientes</p>
+                        <a href="gestionar_clientes.php" class="btn btn-dashboard">Administrar Clientes</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="dashboard-card card-pets">
+                    <div class="card-body text-center p-4">
+                        <div class="card-icon">
+                            <i class="fas fa-paw"></i>
+                        </div>
+                        <h5 class="card-title">Registro de Mascotas</h5>
+                        <p class="card-text text-muted">Gestionar mascotas registradas</p>
+                        <a href="gestionar_mascotas.php" class="btn btn-dashboard">Ver Mascotas</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="dashboard-card card-reports">
+                    <div class="card-body text-center p-4">
+                        <div class="card-icon">
+                            <i class="fas fa-chart-bar"></i>
+                        </div>
+                        <h5 class="card-title">Reportes</h5>
+                        <p class="card-text text-muted">Generar reportes y estadísticas</p>
+                        <a href="reportes.php" class="btn btn-dashboard">Ver Reportes</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="dashboard-card card-users">
+                    <div class="card-body text-center p-4">
+                        <div class="card-icon">
+                            <i class="fas fa-user-shield"></i>
+                        </div>
+                        <h5 class="card-title">Usuarios del Sistema</h5>
+                        <p class="card-text text-muted">Gestionar usuarios y permisos</p>
+                        <a href="gestionar_usuarios.php" class="btn btn-dashboard">Administrar Usuarios</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="dashboard-card card-settings">
+                    <div class="card-body text-center p-4">
+                        <div class="card-icon">
+                            <i class="fas fa-cogs"></i>
+                        </div>
+                        <h5 class="card-title">Configuración</h5>
+                        <p class="card-text text-muted">Ajustes del sistema y veterinaria</p>
+                        <a href="configuracion.php" class="btn btn-dashboard">Configurar</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Citas Recientes -->
+        <div class="table-section">
+            <div class="d-flex justify-content-between align-items-center mb-4">
+                <h3 class="mb-0">Citas Recientes</h3>
+                <a href="ver_citas.php" class="btn btn-outline-primary">Ver Todas las Citas</a>
+            </div>
+            
+            <div class="table-responsive">
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th>Cliente</th>
+                            <th>Mascota</th>
+                            <th>Fecha</th>
+                            <th>Servicio</th>
+                            <th>Estado</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>
+                                <div class="d-flex align-items-center">
+                                    <div class="bg-primary text-white rounded-circle d-flex align-items-center justify-content-center" style="width: 40px; height: 40px;">
+                                        <i class="fas fa-user"></i>
+                                    </div>
+                                    <div class="ms-3">
+                                        <strong>ejemplo</strong>
+                                        <div class="text-muted small">ejemplo@email.com</div>
+                                    </div>
+                                </div>
+                            </td>
+                            <td>nombre (Perro)</td>
+                            <td>Fecha</td>
+                            <td>Motivo</td>
+                            <td><span class="badge badge-confirmed text-white p-2">Estado</span></td>
+                            <td>
+                                <button class="btn btn-sm btn-outline-primary me-1">
+                                    <i class="fas fa-edit"></i>
+                                </button>
+                                <button class="btn btn-sm btn-outline-danger">
+                                    <i class="fas fa-times"></i>
+                                </button>
+                            </td>
+                        </tr>
+                        
+                       
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <h5>Papulandia - Panel Administrativo</h5>
+                    <p class="mb-3">Administrador</p>
+                    <div class="social-icons">
+                        <a href="#" class="me-3"><i class="fab fa-facebook fa-lg"></i></a>
+                        <a href="#" class="me-3"><i class="fab fa-instagram fa-lg"></i></a>
+                        <a href="#" class="me-3"><i class="fab fa-youtube fa-lg"></i></a>
+                    </div>
+                </div>
+                <div class="col-md-6 text-md-end">
+                    <div class="footer-links">
+                        <a href="#">Términos y Condiciones</a>
+                        <a href="#">Políticas de Privacidad</a>
+                        <a href="#">Contacto</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    
+    
+</body>
+</html>
