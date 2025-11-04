@@ -8,7 +8,7 @@ $(document).ready(function() {
 
         // 3. Inicia la revisión de la sesión contra tu backend
         $.ajax({
-            url: '../../backend/api/checkSession.php', // Ruta a tu API
+            url: '../backend/api/checkSession.php', // Ruta a tu API
             method: 'GET',
             dataType: 'json',
             xhrFields: { 

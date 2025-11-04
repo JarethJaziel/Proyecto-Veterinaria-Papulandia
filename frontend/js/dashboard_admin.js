@@ -1,5 +1,3 @@
-// (En el archivo .js que se carga en tu dashboard_admin.html)
-
 $(document).ready(function() {
     
     // Hacemos la llamada para verificar la sesión y obtener los datos
