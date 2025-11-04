@@ -168,7 +168,7 @@ $usuario = $_SESSION['usuario'];
             
             <div class="row g-4">
                 <!-- Hola bro, esto desde jquery activamos el display y le cambiamos el valor a lo de la base de datos cuando la tengamos -->
-                <div class="col-md-6" style="display: none;">
+                <div class="col-md-6" style="display: true;">
                     <div class="pet-card">
                         <div class="d-flex justify-content-between align-items-start mb-2">
                             <h5 class="mb-0">Ejemplo</h5>

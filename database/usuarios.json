@@ -69,5 +69,14 @@
         "contrasena": "2",
         "telefono": "2",
         "tipo": "cliente"
+    },
+    {
+        "idUsuario": 9,
+        "nombres": "sara",
+        "apellidos": "nub",
+        "correo": "sara@nub",
+        "contrasena": "123",
+        "telefono": "",
+        "tipo": "cliente"
     }
 ]
