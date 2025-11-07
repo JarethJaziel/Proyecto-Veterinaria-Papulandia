@@ -25,7 +25,7 @@ $(document).ready(function() {
         $('#navbarUsername').text(usuario.nombre); 
         
         // Inyectamos el tipo de usuario
-        $('#navbarUserType').text('(Admin)');
+        $('#navbarUserType').text('(Cliente)');
         
         // (En este punto también podrías cargar tablas, gráficas, etc.)
 
