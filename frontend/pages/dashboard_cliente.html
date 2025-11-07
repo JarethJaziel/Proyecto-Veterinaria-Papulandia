@@ -104,51 +104,23 @@
                 </div>
             </div>
         </div>
+<!-- Mascotas -->
+       <div class="pets-section">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h3 class="mb-0">Tus Mascotas</h3>
+        <a href="mascotas.php" class="btn btn-outline-primary">Ver Todas</a>
+    </div>
+    
+    <div class="row g-4" style="display: none;"></div>
+    
+    <div class="text-center py-4" id="no-pets-message" style="display: block;">
+        <i class="fas fa-paw fa-3x text-muted mb-3"></i>
+        <h5 class="text-muted">Aún no tienes mascotas registradas</h5>
+        <p class="text-muted">Comienza registrando tu primera mascota</p>
+        <a href="registrar_mascota.html" class="btn btn-dashboard">Registrar Primera Mascota</a>
+    </div>
+</div>
 
-        <!-- Sección de Mascotas Recientes -->
-        <div class="pets-section">
-            <div class="d-flex justify-content-between align-items-center mb-4">
-                <h3 class="mb-0">Tus Mascotas</h3>
-                <a href="mascotas.php" class="btn btn-outline-primary">Ver Todas</a>
-            </div>
-            
-            <div class="row g-4" style="display: none;">
-                <!-- desde jquery -->
-                <div class="col-md-6">
-                    <div class="pet-card d-flex align-items-center">
-                        <div class="pet-avatar">
-                            <i class="fas fa-dog"></i>
-                        </div>
-                        <div>
-                            <h5 class="mb-1">Nombre</h5>
-                            <p class="text-muted mb-1">Raza • Tipo</p>
-                            <small class="text-success">PróximaCita</small>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="col-md-6">
-                    <div class="pet-card d-flex align-items-center">
-                        <div class="pet-avatar">
-                            <i class="fas fa-dog"></i>
-                        </div>
-                        <div>
-                            <h5 class="mb-1">Nombre</h5>
-                            <p class="text-muted mb-1">Raza • Tipo</p>
-                            <small class="text-success">PróximaCita</small>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- Mensaje si no hay mascotas (activamos y desactivamos dependiendo de) -->
-            <div class="text-center py-4" id="no-pets-message" style="display: true;">
-                <i class="fas fa-paw fa-3x text-muted mb-3"></i>
-                <h5 class="text-muted">Aún no tienes mascotas registradas</h5>
-                <p class="text-muted">Comienza registrando tu primera mascota</p>
-                <a href="registrar_mascota.html" class="btn btn-dashboard">Registrar Primera Mascota</a>
-            </div>
-        </div>
 
         <!-- Próximas Citas -->
         <div class="pets-section">
@@ -156,10 +128,10 @@
                 <h3 class="mb-0">Próximas Citas</h3>
                 <a href="citas.php" class="btn btn-outline-primary">Ver Todas</a>
             </div>
-            
+            <!--
             <div class="row g-4">
-                <!-- Hola bro, esto desde jquery activamos el display y le cambiamos el valor a lo de la base de datos cuando la tengamos -->
-                <div class="col-md-6" style="display: true;">
+                 Hola bro, esto desde jquery activamos el display y le cambiamos el valor a lo de la base de datos cuando la tengamos 
+                <div class="col-md-6" style="display: none;">
                     <div class="pet-card">
                         <div class="d-flex justify-content-between align-items-start mb-2">
                             <h5 class="mb-0">Ejemplo</h5>
@@ -182,7 +154,7 @@
                         <p class="text-muted mb-0"><i class="fas fa-user-md me-2"></i>nombreDoctor</p>
                     </div>
                 </div>
-            </div>
+            </div>-->
             
             <!-- Mensaje si no hay citas (lo mismo, activamos y desactivamos dependiendo de)-->
             <div class="text-center py-4" id="no-appointments-message" style="display: true;">
