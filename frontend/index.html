@@ -16,7 +16,7 @@
     <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #8bbda6;">
         <div class="container">
             <a class="navbar-brand" href="index.html">
-                <img src="https://cdn-icons-png.flaticon.com/512/403/403890.png" alt="Zoo Habitat">
+                <img src="resources/index/icono.png" alt="Zoo Habitat">
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
                 <span class="navbar-toggler-icon"></span>
@@ -24,16 +24,19 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item">
-                        <a class="nav-link active" href="#">Inicio</a>
+                        <a class="nav-link active" href="#inicio">Inicio</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Servicios</a>
+                        <a class="nav-link" href="#servicios">Servicios</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Nosotros</a>
+                        <a class="nav-link" href="#nosotros">Nosotros</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Contáctanos</a>
+                        <a class="nav-link" href="#contacto">Contáctanos</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#conocenos">Conocenos</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#" id="btnDashboard">Dashboard</a>
@@ -44,83 +47,95 @@
     </nav>
 
     <!-- Banner Principal -->
-    <section class="hero-section">
+    <section class="hero-section" id="inicio">
         <div class="container">
             <h1 class="display-4 mb-4">"Sabemos que son parte de la familia"</h1>
             <p class="lead mb-4">Es por eso que ofrecemos atención médica las 24hrs</p>
             <div class="row justify-content-center">
                 <div class="col-md-3 mb-3">
-                    <a href="#" class="btn btn-primary btn-lg w-100">Contáctanos</a>
+                    <a href="#contacto" class="btn btn-primary btn-lg w-100">Contáctanos</a>
                 </div>
                 <div class="col-md-3 mb-3">
-                    <a href="#" class="btn btn-primary btn-lg w-100">Servicios</a>
+                    <a href="#servicios" class="btn btn-primary btn-lg w-100">Servicios</a>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Servicios -->
-    <section class="py-5">
-        <div class="container">
-            <h2 class="text-center mb-5" style="color: var(--primary-color);">Nuestros Servicios</h2>
-            <div class="row">
-                <div class="col-md-4">
-                    <div class="service-card">
-                        <img src="https://zoohabitat.com/wp-content/uploads/2024/02/atencion-medica-1-1277x1277.jpg" alt="Atención médica" class="service-icon">
-                        <h3 style="color: var(--primary-color);">Atención médica</h3>
-                        <p style="color: #595959;">Ofrecemos atención médica las 24 horas</p>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="service-card">
-                        <img src="https://zoohabitat.com/wp-content/uploads/2024/02/tienda-1-721x721.jpg" alt="Tienda" class="service-icon">
-                        <h3 style="color: var(--primary-color);">Tienda</h3>
-                        <p style="color: #595959;">Ofrecemos una gran variedad de accesorios</p>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="service-card">
-                        <img src="https://zoohabitat.com/wp-content/uploads/2024/02/estetica-1-400x400.webp" alt="Estética" class="service-icon">
-                        <h3 style="color: var(--primary-color);">Estética</h3>
-                        <p style="color: #595959;">La limpieza también es parte de la salud</p>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="service-card">
-                        <img src="https://zoohabitat.com/wp-content/uploads/2024/02/estancias-300x300.jpg" alt="Estancia" class="service-icon">
-                        <h3 style="color: var(--primary-color);">Estancia</h3>
-                        <p style="color: #595959;">Los cuidamos como en casa cuando tengas que salir</p>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="service-card">
-                        <img src="https://zoohabitat.com/wp-content/uploads/2024/02/SAD-bannesrs-434x434.jpg" alt="Servicio a domicilio" class="service-icon">
-                        <h3 style="color: var(--primary-color);">Servicio a domicilio</h3>
-                        <p style="color: #595959;">Nosotros vamos por tu mascotita o te llevamos lo que necesites</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+<section class="py-5" id="servicios">
+    <div class="container">
+        <h2 class="text-center mb-5" style="color: var(--primary-color);">Nuestros Servicios</h2>
+        <div class="row">
 
-    <!-- Conoce -->
-    <section class="py-5" style="background-color: var(--secondary-color)">
-        <div class="container">
-            <div class="row align-items-center">
-                <div class="col-md-6">
-                    <img src="resources/index/conoce1.png" alt="Veterinario a domicilio" class="img-fluid">
-                </div>
-                <div class="col-md-6">
-                    <h2 class="text-white mb-4">asdfasdfasdfasdfasd</h2>
-                    <p class="text-white mb-4">Lorem ipsum dolor sit amet consectetur adipisicing elit. Saepe ipsum maxime similique explicabo totam fuga sed sint omnis odio hic! Numquam nisi assumenda at cum unde ullam dolorum ratione facere.</p>
-                    <a href="#" class="btn btn-accent btn-lg">¡Conoce más!</a>
+            <div class="col-md-4">
+                <div class="service-card">
+                    <img src="resources/index/atencionMedica.jpg" alt="Atención médica" class="service-icon">
+                    <h3 style="color: var(--primary-color);">Atención médica</h3>
+                    <p style="color: #595959;">Brindamos atención veterinaria profesional las 24 horas del día.</p>
                 </div>
             </div>
+
+            <div class="col-md-4">
+                <div class="service-card">
+                    <img src="resources/index/tienda.jpg" alt="Tienda" class="service-icon">
+                    <h3 style="color: var(--primary-color);">Tienda</h3>
+                    <p style="color: #595959;">Encuentra una amplia variedad de productos y accesorios para tu mascota.</p>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="service-card">
+                    <img src="resources/index/estetica.webp" alt="Estética" class="service-icon">
+                    <h3 style="color: var(--primary-color);">Estética</h3>
+                    <p style="color: #595959;">Cuidamos la higiene y apariencia de tu mascota con servicios de calidad.</p>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="service-card">
+                    <img src="resources/index/estancias.jpg" alt="Estancia" class="service-icon">
+                    <h3 style="color: var(--primary-color);">Estancia</h3>
+                    <p style="color: #595959;">Ofrecemos hospedaje cómodo y seguro para tu mascota cuando necesites ausentarte.</p>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="service-card">
+                    <img src="resources/index/mapa.jpg" alt="Servicio a domicilio" class="service-icon">
+                    <h3 style="color: var(--primary-color);">Servicio a domicilio</h3>
+                    <p style="color: #595959;">Recogemos a tu mascota o te entregamos lo que necesites directamente en tu hogar.</p>
+                </div>
+            </div>
+
         </div>
-    </section>
+    </div>
+</section>
+
+
+    <!-- Conócenos -->
+<section class="py-5" style="background-color: var(--secondary-color);" id="nosotros">
+  <div class="container">
+    <div class="row align-items-center">
+      <div class="col-md-6 mb-4 mb-md-0">
+        <img src="resources/index/conoce1.png" alt="Veterinario atendiendo a una mascota" class="img-fluid rounded-3 shadow-lg">
+      </div>
+      <div class="col-md-6">
+        <h2 class="text-white mb-4">Cuidamos con amor, tratamos con ciencia 🩺🐾</h2>
+        <p class="text-white mb-4">
+          En <strong>Papulandia</strong> creemos que cada mascota es parte importante de la familia.  
+          Por eso, nuestro equipo de profesionales ofrece atención médica, estética y de bienestar integral, combinando la experiencia veterinaria con un trato lleno de cariño.  
+          Desde revisiones de rutina hasta emergencias, estamos disponibles las 24 horas para cuidar lo que más amas.
+        </p>
+        <a href="#contacto" class="btn btn-accent btn-lg text-white fw-bold">¡Conoce más!</a>
+      </div>
+    </div>
+  </div>
+</section>
+
 
     <!-- Contacto -->
-    <section class="contact-section">
+    <section class="contact-section" id="contacto">
         <div class="container">
             <h2 class="text-center mb-5">Contáctanos</h2>
             <div class="row text-center">
@@ -144,7 +159,7 @@
     </section>
 
     <!-- Mapa -->
-    <section class="py-5">
+    <section class="py-5" id="conocenos">
         <div class="container">
             <div class="row">
                 <div class="col-md-8 mb-4">
@@ -159,40 +174,54 @@
         </div>
     </section>
 
-    <!-- Footer -->
-    <footer>
-        <div class="container">
-            <div class="row">
-                <div class="col-md-6">
-                    <h4>Disponibles 24/7</h4>
-                    <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Voluptatem molestias quo facilis corrupti magni ab soluta ducimus, obcaecati dignissimos, consequuntur iste provident modi fugiat. Molestiae repellendus cum architecto repellat nam!.</p>
-                    <h4 style="color: var(--secondary-color);"><a href="tel:999 421 0525" class="text-decoration-none" style="color: var(--secondary-color);">999 421 0525</a></h4>
-                </div>
-                <div class="col-md-6">
-                    <h4>Encuéntranos</h4>
-                    <p>C. 55 205, Fraccionamiento del Sur, 97287 Mérida, Yuc.</p>
-                    <div class="social-icons mt-3">
-                        <a href="#" class="text-white me-3"><i class="fab fa-facebook fa-2x"></i></a>
-                        <a href="#" class="text-white me-3"><i class="fab fa-instagram fa-2x"></i></a>
-                        <a href="#" class="text-white me-3"><i class="fab fa-youtube fa-2x"></i></a>
-                    </div>
-                </div>
+   <!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <h4>Disponibles 24/7</h4>
+                <p>En Papulandia nos preocupamos por el bienestar de tus mascotas en todo momento. 
+                   Nuestro equipo está disponible las 24 horas para ofrecer atención veterinaria 
+                   de urgencias, consultas y asesoramiento personalizado. Tu tranquilidad es nuestra prioridad.</p>
+                <h4 style="color: var(--secondary-color);">
+                    <a href="tel:9994210525" class="text-decoration-none" style="color: var(--secondary-color);">
+                        999 421 0525
+                    </a>
+                </h4>
             </div>
-            <hr class="my-4" style="border-color: #383838;">
-            <div class="row">
-                <div class="col-md-6">
-                    <div class="footer-links">
-                        <a href="#">Términos y Condiciones</a>
-                        <a href="#">Blog</a>
-                        <a href="#">Políticas de Privacidad</a>
-                    </div>
-                </div>
-                <div class="col-md-6 text-md-end">
-                    <p>Papulandia</p>
+            <div class="col-md-6">
+                <h4>Encuéntranos</h4>
+                <p>C. 55 205, Fraccionamiento del Sur, 97287 Mérida, Yuc.</p>
+                <div class="social-icons mt-3">
+                    <a href="#" class="text-white me-3"><i class="fab fa-facebook fa-2x"></i></a>
+                    <a href="#" class="text-white me-3"><i class="fab fa-instagram fa-2x"></i></a>
+                    <a href="#" class="text-white me-3"><i class="fab fa-youtube fa-2x"></i></a>
                 </div>
             </div>
         </div>
-    </footer>
+        <hr class="my-4" style="border-color: #383838;">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="footer-links">
+                    <div class="footer-links">
+                        <a href="pages/terminos.html">Términos y Condiciones</a>
+                        <a href="pages/blog.html">Blog</a>
+                        <a href="pages/privacidad.html">Políticas de Privacidad</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 text-md-end">
+                <p>Papulandia</p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+
+    <!-- Botón "Volver arriba" -->
+    <a href="#inicio" class="btn btn-primary btn-lg" id="btnScrollTop">
+        <i class="fas fa-arrow-up"></i>
+    </a>
 
     <!-- Bootstrap JS y jQuery -->
     
