@@ -41,4 +41,35 @@ $(document).ready(function() {
         });
     });
 
+    // --- BOTÓN VOLVER ARRIBA ---
+    const btn = $('<a href="#inicio" class="btn btn-primary btn-lg" id="btnScrollTop"><i class="fas fa-arrow-up"></i></a>');
+    $('body').append(btn); // Agrega la flecha al final del body
+
+    // Mostrar / ocultar al hacer scroll
+    $(window).on('scroll', function() {
+        if ($(this).scrollTop() > 300) {
+            $('#btnScrollTop').fadeIn();
+        } else {
+            $('#btnScrollTop').fadeOut();
+        }
+    });
+
+    // Desplazamiento suave al hacer clic
+    $('#btnScrollTop').on('click', function(e) {
+        e.preventDefault();
+        $('html, body').animate({ scrollTop: 0 }, 'smooth');
+    });
+
 });
+
+// --- Forzar que al recargar siempre se muestre el inicio ---
+$(window).on('load', function() {
+    // Elimina cualquier hash del URL
+    if (window.location.hash) {
+        history.replaceState(null, null, window.location.pathname);
+    }
+
+    // Desplaza suavemente hacia arriba (inicio)
+    $('html, body').animate({ scrollTop: 0 }, 300);
+});
+

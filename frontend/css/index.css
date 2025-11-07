@@ -102,3 +102,20 @@
         .footer-links a:hover {
             color: #2192ca;
         }
+
+        #btnScrollTop {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            display: none;
+            border-radius: 50%;
+            padding: 12px 18px;
+            background-color: #8bbda6; 
+            border: none;
+            z-index: 1000;
+            transition: opacity 0.3s ease;
+        }
+
+        #btnScrollTop:hover {
+            background-color: #6ea78c;
+        }
