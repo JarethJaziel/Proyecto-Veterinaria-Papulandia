@@ -1,50 +1,28 @@
 <?php
+class Usuario {
+    private $conn;
 
-class Usuario{
-    private $idUsuario;
-    private $nombres;
-    private $apellidos;
-    private $correo;
-    private $contrasena;
-
-    public function __construct($nombres, $apellidos, $correo, $contrasena){
-        $this->nombres = $nombres;
-        $this->apellidos = $apellidos;
-        $this->correo = $correo;
-        $this->contrasena = $contrasena;
+    public function __construct($db_connection) {
+        $this->conn = $db_connection;
     }
 
-    public function getIdUsuario(){
-        return $this->idUsuario;
-    }
-    public function getNombres(){
-        return $this->nombres;
-    }
-    public function getApellidos(){
-        return $this->apellidos;
-    }
-    public function getContrasena(){
-        return $this->contrasena;
-    }
-    public function getCorreo(){
-        return $this->correo;
+    public function buscarPorCorreo($correo) {
+        $sql = "SELECT id, nombre, apellidos, correo, contrasena, tipo FROM usuarios WHERE correo = ?";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->bind_param("s", $correo);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        return $result->fetch_assoc(); 
     }
 
-    public function setIdUsuario($idUsuario){
-        $this->idUsuario = $idUsuario;
+    public function crear($nombres, $apellidos, $correo, $hash_contrasena, $tipo, $telefono) {
+        $sql = "INSERT INTO usuarios (nombre, apellidos, correo, contrasena, tipo, telefono) 
+                VALUES (?, ?, ?, ?, ?, ?)";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->bind_param("ssssss", 
+            $nombres, $apellidos, $correo, $hash_contrasena, $tipo, $telefono
+        );
+        return $stmt->execute(); // Devuelve true o false
     }
-    public function setNombres($nombres){
-        $this->nombres = $nombres;
-    }
-    public function setApellidos($apellidos){
-        $this->apellidos = $apellidos;
-    }
-    public function setContrasena($contrasena){
-        $this->contrasena = $contrasena;
-    }
-    public function setCorreo($correo){
-        $this->correo = $correo;
-    }
-
-
 }
+?>
