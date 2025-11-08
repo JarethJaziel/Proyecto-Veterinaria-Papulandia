@@ -64,8 +64,11 @@ $(document).ready(function() {
                 alert("" + response.message);
             }
         })
-        .fail(function(xhr) {
-            alert("Error al registrar la mascota: " + xhr.responseText);
-        });
+       .fail(function(jqXHR, textStatus, errorThrown) {
+    console.error("Error al obtener las mascotas del cliente:");
+    console.error("Estado:", textStatus);
+    console.error("Error:", errorThrown);
+    console.error("Respuesta del servidor:", jqXHR.responseText);
+});
     });
 });
