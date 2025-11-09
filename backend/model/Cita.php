@@ -1,37 +1,23 @@
 <?php
-class Cita{
-    private $idCita;
-    private $cliente;
-    private $fecha;
-    private $hora;
-    
-    public function __construct($cliente,$fecha,$hora){
-        $this->cliente=$cliente;
-        $this->fecha = $fecha;
-        $this->hora = $hora;
+class Cita {
+    private $conn;
+
+    public function __construct($db_connection) {
+        $this->conn = $db_connection;
     }
-    public function getIdCita(){
-        return $this->idCita;
+
+    public function crear($mascota_id, $fecha) {
+        
     }
-    public function getFecha(){
-        return $this->fecha;
+
+    public function obtenerPorUsuarioId($usuario_id) {
+        // $sql = "SELECT * FROM citas WHERE mascota_id = ?"
+        //JOIN mascotas JOIN clientes...;
     }
-    public function getHora(){
-        return $this->hora;
+
+    public function obtenerPorMascotaId($mascota_id) {
+        // $sql = "SELECT * FROM citas WHERE mascota_id = ?";
     }
-    public function getIdCliente(){
-        return $this->cliente->getIdCliente();
-    }
-    public function setIdCita($idCita){
-        $this->idCita = $idCita;
-    }
-    public function setFecha($fecha){
-        $this->fecha = $fecha;
-    }
-    public function setHora($hora){
-        $this->hora = $hora;
-    }
-    public function setCliente($cliente){
-        $this->cliente = $cliente;
-    }
+
 }
+?>
