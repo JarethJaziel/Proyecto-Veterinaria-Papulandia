@@ -1,5 +1,6 @@
 $(document).ready(function() {
-    // Verificar sesión
+    
+    // Hacemos la llamada para verificar la sesión y obtener los datos
     $.ajax({
         url: '../../backend/api/checkSession.php',
         method: 'GET',
@@ -7,68 +8,32 @@ $(document).ready(function() {
         xhrFields: { withCredentials: true }
     })
     .done(function(data) {
+        
+        // 1. PROTEGER LA PÁGINA (Paso de seguridad)
+        // Si no está autenticado, O NO ES del tipo correcto...
         if (!data.auth || data.usuario.tipo !== 'cliente') { 
+            // ¡Lo sacamos de aquí!
             window.location.href = '../pages/login.html';
             return;
         }
 
+        // 2. INYECTAR LOS DATOS (¡Tu solicitud!)
+        // Si llegamos aquí, es un admin autenticado.
         const usuario = data.usuario;
-        $('#navbarUsername').text(usuario.nombre);
+        
+        // Usamos .text() para inyectar el nombre de forma segura
+        $('#navbarUsername').text(usuario.nombre); 
+        
+        // Inyectamos el tipo de usuario
         $('#navbarUserType').text('(Cliente)');
-
-        // Cargar mascotas del cliente
-$.ajax({
-    url: '../../backend/api/getMascotasCliente.php',
-    method: 'GET',
-    dataType: 'json',
-    xhrFields: { withCredentials: true }
-})
-.done(function(mascotas) {
-    const petsContainer = $('.pets-section .row');
-    const noPetsMessage = $('#no-pets-message');
-
-    // Limpiar lo anterior
-    petsContainer.empty();
-
-    if (mascotas.length === 0) {
-        // No tiene mascotas
-        petsContainer.hide();
-        noPetsMessage.show();
-    } else {
-        // Tiene mascotas
-        noPetsMessage.hide();
-        petsContainer.show();
-
-        mascotas.forEach(mascota => {
-            const citaTexto = mascota.proxima_cita === 'Sin asignar'
-                ? '<small class="text-muted">Sin asignar</small>'
-                : `<small class="text-success">${mascota.proxima_cita}</small>`;
-
-            const petCard = `
-                <div class="col-md-6">
-                    <div class="pet-card d-flex align-items-center">
-                        <div class="pet-avatar">
-                            <i class="fas fa-paw"></i>
-                        </div>
-                        <div>
-                            <h5 class="mb-1">${mascota.nombre_mascota}</h5>
-                            <p class="text-muted mb-1">${mascota.raza} • ${mascota.especie}</p>
-                            ${citaTexto}
-                        </div>
-                    </div>
-                </div>
-            `;
-            petsContainer.append(petCard);
-        });
-    }
-})
-.fail(function(err) {
-    console.error("Error al obtener las mascotas del cliente:", err);
-});
+        
+        // (En este punto también podrías cargar tablas, gráficas, etc.)
 
     })
     .fail(function() {
+        // Si la llamada AJAX falla (error 401, 500, etc.),
+        // asumimos que no está autenticado.
         window.location.href = '../pages/login.html';
     });
-});
 
+});
