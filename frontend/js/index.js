@@ -62,14 +62,4 @@ $(document).ready(function() {
 
 });
 
-// --- Forzar que al recargar siempre se muestre el inicio ---
-$(window).on('load', function() {
-    // Elimina cualquier hash del URL
-    if (window.location.hash) {
-        history.replaceState(null, null, window.location.pathname);
-    }
-
-    // Desplaza suavemente hacia arriba (inicio)
-    $('html, body').animate({ scrollTop: 0 }, 300);
-});
 
