@@ -43,7 +43,7 @@ class MascotasController {
             $this->enviarRespuesta(500, false, "Error al registrar la mascota en la base de datos.");
         }
     }
-
+    
     private function enviarRespuesta($codigoEstado, $success, $message, $datosAdicionales = []) {
         http_response_code($codigoEstado);
         $respuesta = ["success" => $success, "message" => $message];

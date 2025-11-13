@@ -19,15 +19,22 @@ if ($conn->connect_error) {
 // --- Incluir Clases ---
 require_once __DIR__ . '/../model/Usuario.php';
 require_once __DIR__ . '/../controllers/UsuariosController.php';
+
 require_once __DIR__ . '/../model/Mascota.php';         
 require_once __DIR__ . '/../controllers/MascotasController.php';
 
+require_once __DIR__ . '/../model/Cita.php';         
+require_once __DIR__ . '/../controllers/CitasController.php';
 // --- Creación de "Servicios" ---
 $modeloUsuario = new Usuario($conn);
 $controladorUsuario = new UsuariosController($modeloUsuario);
 
 $modeloMascota = new Mascota($conn); 
 $controladorMascota = new MascotasController($modeloMascota);
+
+$modeloCita = new Cita($conn); 
+$controladorCita = new CitasController($modeloCita);
+
 
 $action = $_GET['action'] ?? '';
 
@@ -43,6 +50,10 @@ switch ($action) {
     case 'register_pet':
         $controladorMascota->crear();
         break;
+
+    case 'register_cita':
+        $controladorCita->crear();
+        break;    
 
     default:
         http_response_code(404);

@@ -31,7 +31,7 @@ $sql = "SELECT
             m.nombre AS nombre,
             m.especie AS especie,
             m.raza AS raza,
-            c.fecha AS proxima_cita
+            c.fecha AS proxima_cita   
         FROM mascotas m
         LEFT JOIN citas c ON c.mascota_id = m.id
         WHERE m.usuario_id = ?";
