@@ -1,9 +1,6 @@
 
         $(document).ready(function() {
-            
-        });
-
-        $('#registrarMascotaForm').on('submit', function(e) {
+          $('#formMascota').on('submit', function(e) {
             e.preventDefault();
             
             const btn = $(this).find('button[type="submit"]');
@@ -19,7 +16,10 @@
                         .addClass(result.success ? 'text-success' : 'text-danger');
 
                 if (result.success) {
+                    const toPath = 'dashboard_cliente'+'.html';
+                    setTimeout(() => window.location.href = toPath, 500);
                     //dar o no success
+                    
                 }
                 },
                 error: function() {
@@ -29,4 +29,9 @@
                 btn.prop('disabled', false).text('Registrar');
                 }
             });
+            
         });
+  
+        });
+
+        
