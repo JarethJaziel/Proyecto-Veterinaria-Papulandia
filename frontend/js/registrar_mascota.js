@@ -18,8 +18,11 @@
                         .removeClass('text-success text-danger')
                         .addClass(result.success ? 'text-success' : 'text-danger');
 
-                if (result.success) {
-                    //dar o no success
+                if (response.success) {
+                    alert("Mascota registrada con éxito.");
+                    $('#formMascota')[0].reset();
+                } else {
+                    alert("" + response.message);
                 }
                 },
                 error: function() {
