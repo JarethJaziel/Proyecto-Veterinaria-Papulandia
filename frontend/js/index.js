@@ -1,3 +1,4 @@
+
 $(document).ready(function() {
 
     // 1. Busca el botón con id "btnDashboard" y espera un clic
@@ -8,7 +9,7 @@ $(document).ready(function() {
 
         // 3. Inicia la revisión de la sesión contra tu backend
         $.ajax({
-            url: '../backend/api/checkSession.php', // Ruta a tu API
+            url: RUTA_BASE + 'backend/api/checkSession.php', // Ruta a tu API
             method: 'GET',
             dataType: 'json',
             xhrFields: { 

@@ -4,7 +4,7 @@ $(document).ready(function() {
             console.log($(this).serialize());
             const btn = $(this).find('button[type="submit"]');
             $.ajax({
-                url: $(this).attr('action'),
+                url: RUTA_BASE + $(this).attr('action'),
                 type: 'POST',
                 data: $(this).serialize(),
                 dataType: 'json',
@@ -36,7 +36,7 @@ $(document).ready(function() {
 
     // Llamada AJAX para cargar las mascotas del cliente
     $.ajax({
-        url: '../../backend/controllers/dashboard_clienteController.php',
+        url: RUTA_BASE + 'backend/controllers/dashboard_clienteController.php',
         method: 'GET',
         dataType: 'json',
         xhrFields: { withCredentials: true }

@@ -3,7 +3,7 @@ $('#loginForm').on('submit', function(e) {
   
   const btn = $(this).find('button[type="submit"]');
   $.ajax({
-    url: $(this).attr('action'),
+    url: RUTA_BASE + $(this).attr('action'),
     type: 'POST',
     data: $(this).serialize(),
     dataType: 'json',

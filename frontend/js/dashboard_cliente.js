@@ -1,8 +1,9 @@
+
 $(document).ready(function() {
 
     // Llamada AJAX para cargar las mascotas del cliente
     $.ajax({
-        url: '../../backend/controllers/dashboard_clienteController.php',
+        url: RUTA_BASE + 'backend/controllers/dashboard_clienteController.php',
         method: 'GET',
         dataType: 'json',
         xhrFields: { withCredentials: true }

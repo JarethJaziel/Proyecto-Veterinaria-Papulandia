@@ -25,7 +25,7 @@
             $('#registerForm').on('submit', function(e) {
             e.preventDefault();
             $.ajax({
-              url: $(this).attr('action'),
+              url: RUTA_BASE + $(this).attr('action'),
               type: 'POST',
               data: $(this).serialize(),
               dataType: 'json',

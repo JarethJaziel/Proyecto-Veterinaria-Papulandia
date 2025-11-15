@@ -1,8 +1,9 @@
+
 $(document).ready(function() {
     
     // Hacemos la llamada para verificar la sesión y obtener los datos
     $.ajax({
-        url: '../../backend/api/checkSession.php',
+        url: RUTA_BASE + 'backend/api/checkSession.php',
         method: 'GET',
         dataType: 'json',
         xhrFields: { withCredentials: true }

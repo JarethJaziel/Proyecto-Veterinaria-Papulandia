@@ -1,0 +1,1 @@
+const RUTA_BASE = '/Proyecto-Veterinaria/';
