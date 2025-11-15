@@ -17,17 +17,27 @@ if ($conn->connect_error) {
 }
 
 // --- Incluir Clases ---
-require_once __DIR__ . '/../model/Usuario.php';
-require_once __DIR__ . '/../controllers/UsuariosController.php';
-require_once __DIR__ . '/../model/Mascota.php';         
-require_once __DIR__ . '/../controllers/MascotasController.php';
+require_once __DIR__ . '/../model/User.php';
+require_once __DIR__ . '/../controllers/UsersController.php';
 
+require_once __DIR__ . '/../model/Pet.php';         
+require_once __DIR__ . '/../controllers/PetsController.php';
+
+require_once __DIR__ . '/../model/Date.php';         
+require_once __DIR__ . '/../controllers/DatesController.php';
+
+require_once __DIR__ . '/../controllers/ClientDashboardController.php';
 // --- Creación de "Servicios" ---
-$modeloUsuario = new Usuario($conn);
-$controladorUsuario = new UsuariosController($modeloUsuario);
+$modeloUsuario = new User($conn);
+$controladorUsuario = new UsersController($modeloUsuario);
 
-$modeloMascota = new Mascota($conn); 
-$controladorMascota = new MascotasController($modeloMascota);
+$modeloMascota = new Pet($conn); 
+$controladorMascota = new PetsController($modeloMascota);
+
+$modeloCita = new Date($conn); 
+$controladorCita = new DatesController($modeloCita);
+
+$controladorClientDashboard = new ClientDashboardController($modeloMascota, $modeloCita);
 
 $action = $_GET['action'] ?? '';
 
@@ -41,7 +51,15 @@ switch ($action) {
         break;
 
     case 'register_pet':
-        $controladorMascota->crear();
+        $controladorMascota->create();
+        break;
+
+    case 'register_cita':
+        $controladorCita->create();
+        break;  
+        
+    case 'get_client_pets':
+        $controladorClientDashboard->getClienteDashboard();
         break;
 
     default:

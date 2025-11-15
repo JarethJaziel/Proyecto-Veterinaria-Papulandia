@@ -1,0 +1,43 @@
+/* === Estilos específicos para páginas de artículos === */
+
+body {
+  background-color: #f8f9fa;
+}
+
+
+/* Título del artículo */
+h1 {
+  font-size: 2rem;
+  color: #2d594d;
+  margin-bottom: 1rem;
+}
+
+/* Subtítulo y fecha */
+.text-muted {
+  color: #6c757d !important;
+  font-style: italic;
+}
+
+/* Párrafos */
+p, li {
+  font-size: 1.1rem;
+  line-height: 1.7;
+}
+
+/* Enlace para volver al blog */
+.btn-secondary {
+  background-color: #8bbda6;
+  border: none;
+  transition: 0.3s ease;
+}
+
+.btn-secondary:hover {
+  background-color: #78a792;
+}
+
+/* Lista dentro del artículo */
+.details-list {
+  background-color: #d7ebe2;
+  padding: 1.2rem 1.5rem;
+  border-radius: 10px;
+}

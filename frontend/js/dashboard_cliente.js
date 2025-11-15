@@ -1,39 +1,92 @@
 $(document).ready(function() {
-    
-    // Hacemos la llamada para verificar la sesión y obtener los datos
-    $.ajax({
-        url: '../../backend/api/checkSession.php',
+
+     $.ajax({
+        url: RUTA_BASE + 'backend/api/api.php?action=get_client_pets',
         method: 'GET',
         dataType: 'json',
         xhrFields: { withCredentials: true }
     })
-    .done(function(data) {
-        
-        // 1. PROTEGER LA PÁGINA (Paso de seguridad)
-        // Si no está autenticado, O NO ES del tipo correcto...
-        if (!data.auth || data.usuario.tipo !== 'cliente') { 
-            // ¡Lo sacamos de aquí!
-            window.location.href = '../pages/login.html';
+    .done(function(response) {
+        if (!response.success) {
+            console.error('Error:', response.message);
             return;
         }
 
-        // 2. INYECTAR LOS DATOS (¡Tu solicitud!)
-        // Si llegamos aquí, es un admin autenticado.
-        const usuario = data.usuario;
+        const mascotas = response.mascotas; 
+        const petsContainer = $('.pets-section .row');
+        const noPetsMessage = $('#no-pets-message');
+        const citasContainer = $('.citas-section .row');
+        const noCitasMessage = $('#no-appointments-message');
         
-        // Usamos .text() para inyectar el nombre de forma segura
-        $('#navbarUsername').text(usuario.nombre); 
-        
-        // Inyectamos el tipo de usuario
-        $('#navbarUserType').text('(Cliente)');
-        
-        // (En este punto también podrías cargar tablas, gráficas, etc.)
+        petsContainer.empty();
+        citasContainer.empty();
 
+        // 2. MANEJAR EL CASO DE "CERO MASCOTAS"
+        if (mascotas.length === 0) {
+            noPetsMessage.show();
+            petsContainer.hide();
+            noCitasMessage.show();
+            citasContainer.hide();
+        } else {
+            // 3. CASO "CON MASCOTAS"
+            noPetsMessage.hide();
+            petsContainer.show();
+            
+            let citasEncontradas = 0;
+
+            mascotas.forEach(mascota => {
+                
+                // --- A. PINTAR LA TARJETA DE MASCOTA (SIEMPRE) ---
+                const petCard = `
+                    <div class="col-md-6">
+                        <div class="pet-card d-flex align-items-center">
+                            <div class="pet-avatar">
+                                <i class="fas fa-${(mascota.especie && mascota.especie.toLowerCase() === 'gato') ? 'cat' : 'dog'}"></i>
+                            </div>
+                            <div>
+                                <h5 class="mb-1">${mascota.nombre}</h5>
+                                <p class="text-muted mb-1">${mascota.raza || ''} • ${mascota.especie || ''}</p>
+                                <small class="text-success">
+                                    Próxima cita el: ${mascota.proxima_cita ?? 'Sin citas próximas'}
+                                </small>
+                            </div>
+                        </div>
+                    </div>
+                `;
+                petsContainer.append(petCard);
+
+                // --- B. PINTAR LA TARJETA DE CITA (SOLO SI EXISTE) ---
+                if (mascota.proxima_cita) {
+                    citasEncontradas++; // ¡Encontramos una!
+
+                    const citasCard = `
+                        <div class="col-md-6">
+                            <div class="pet-card">
+                                <div class="d-flex justify-content-between align-items-start mb-2">
+                                    <h5 class="mb-0">${mascota.nombre}</h5>
+                                    <span class="badge bg-info">Programada</span>
+                                </div>
+                                <p class="text-muted mb-2"><i class="fas fa-paw me-2"></i>${mascota.especie}</p>
+                                <p class="text-muted mb-2"><i class="fas fa-calendar me-2"></i>${mascota.proxima_cita}</p>
+                                <p class="text-muted mb-0"><i class="fas fa-user-md me-2"></i>Jareth Moo Jaziel</p>
+                            </div>
+                        </div>
+                    `;
+                    citasContainer.append(citasCard);
+                }
+            }); // <-- Fin del forEach
+
+            // (Podemos tener mascotas, pero 0 citas)
+            if (citasEncontradas === 0) {
+                noCitasMessage.show();
+                citasContainer.hide();
+            } else {
+                noCitasMessage.hide();
+                citasContainer.show();
+            }
+        }
     })
-    .fail(function() {
-        // Si la llamada AJAX falla (error 401, 500, etc.),
-        // asumimos que no está autenticado.
-        window.location.href = '../pages/login.html';
+    .fail(function(jqXHR, textStatus, errorThrown) {
+        console.error('Error fatal de AJAX:', textStatus, errorThrown);
     });
-
 });
