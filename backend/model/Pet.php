@@ -1,12 +1,12 @@
 <?php
-class Mascota {
+class Pet {
     private $conn;
 
     public function __construct($db_connection) {
         $this->conn = $db_connection;
     }
 
-    public function crear($usuario_id, $nombre, $especie, $raza, $fecha_nacimiento) {
+    public function create($usuario_id, $nombre, $especie, $raza, $fecha_nacimiento) {
         $sql = "INSERT INTO mascotas (usuario_id, nombre, especie, raza, fecha_nacimiento) 
                 VALUES (?, ?, ?, ?, ?)";
         $stmt = $this->conn->prepare($sql);
@@ -26,8 +26,10 @@ class Mascota {
         return $stmt->execute();
     }
 
-    public function obtenerPorUsuarioId($usuario_id) {
-        $sql = "SELECT id, nombre, especie FROM mascotas WHERE usuario_id = ?";
+    public function getByUserId($usuario_id) {
+        $sql = "SELECT id AS mascota_id, nombre, especie, raza 
+                FROM mascotas 
+                WHERE usuario_id = ?";
         $stmt = $this->conn->prepare($sql);
 
         if ($stmt === false) {

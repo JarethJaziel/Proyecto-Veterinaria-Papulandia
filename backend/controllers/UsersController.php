@@ -1,11 +1,11 @@
 <?php
 
-require_once __DIR__ . '/../model/Usuario.php';
+require_once __DIR__ . '/../model/User.php';
 
-class UsuariosController {
+class UsersController {
     private $modeloUsuario;
 
-    public function __construct(Usuario $modeloUsuario) {
+    public function __construct(User $modeloUsuario) {
         $this->modeloUsuario = $modeloUsuario;
     }
 
@@ -18,7 +18,7 @@ class UsuariosController {
             return; // Detiene la ejecución
         }
 
-        $usuarioEncontrado = $this->modeloUsuario->buscarPorCorreo($correo);
+        $usuarioEncontrado = $this->modeloUsuario->getByEmail($correo);
 
         if ($usuarioEncontrado && password_verify($contrasena_form, $usuarioEncontrado['contrasena'])) {
             // Éxito
@@ -49,7 +49,7 @@ class UsuariosController {
 
         $contrasena = password_hash($contrasena_form, PASSWORD_DEFAULT);
 
-        $exito = $this->modeloUsuario->crear(
+        $exito = $this->modeloUsuario->create(
             $nombres, $apellidos, $correo, $contrasena, $tipo, $telefono
         );
 

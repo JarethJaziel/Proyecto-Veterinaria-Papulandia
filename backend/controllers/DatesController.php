@@ -1,15 +1,15 @@
 <?php
-require_once __DIR__ . '/../model/Cita.php';
+require_once __DIR__ . '/../model/Date.php';
 
-class CitasController {
+class DatesController {
 
     private $modeloCita;
 
-    public function __construct(Cita $modeloCita){
+    public function __construct(Date $modeloCita){
         $this->modeloCita = $modeloCita;
     }
 
-    public function crear() {
+    public function create() {
         
         
         if (!isset($_SESSION['usuario']) || !isset($_SESSION['usuario']['id'])) {
@@ -28,7 +28,7 @@ class CitasController {
 
         $fecha_hora = $fecha . ' ' . $hora . ':00';
 
-        $exito = $this->modeloCita->crear($mascota_id, $fecha_hora);
+        $exito = $this->modeloCita->create($mascota_id, $fecha_hora);
 
         if ($exito) {
             $this->enviarRespuesta(200, true, "Cita registrada con éxito." );
