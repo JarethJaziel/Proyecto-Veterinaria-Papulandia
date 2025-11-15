@@ -10,6 +10,15 @@
             font-family: "MS Sans Serif", Geneva, sans-serif;
         }
         
+        .main-box {
+            background-color: #ffffff;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            border: 1px solid #e2e2e2;
+            max-width: 1200px;
+            margin: 40px auto;
+        }
+
         .navbar-brand img {
             max-height: 60px;
         }

@@ -3,7 +3,7 @@ $('#loginForm').on('submit', function(e) {
   
   const btn = $(this).find('button[type="submit"]');
   $.ajax({
-    url: $(this).attr('action'),
+    url: RUTA_BASE + $(this).attr('action'),
     type: 'POST',
     data: $(this).serialize(),
     dataType: 'json',
@@ -14,7 +14,7 @@ $('#loginForm').on('submit', function(e) {
             .addClass(result.success ? 'text-success' : 'text-danger');
 
       if (result.success) {
-        const toPath = 'dashboard_'+result.tipo+'.html';
+        const toPath = 'pages/'+result.tipo+'/dashboard_'+result.tipo+'.html';
         setTimeout(() => window.location.href = toPath, 500);
       }
     },
