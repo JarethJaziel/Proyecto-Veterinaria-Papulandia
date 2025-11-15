@@ -23,9 +23,9 @@ $(document).ready(function() {
                 const tipo = data.usuario.tipo;
 
                 if (tipo === 'admin') {
-                    window.location.href = 'pages/dashboard_admin.html';
+                    window.location.href = 'pages/admin/dashboard_admin.html';
                 } else if (tipo === 'cliente') {
-                    window.location.href = 'pages/dashboard_cliente.html';
+                    window.location.href = 'pages/cliente/dashboard_cliente.html';
                 } else {
                     // Tipo desconocido, enviar a login por si acaso
                     window.location.href = 'pages/login.html';

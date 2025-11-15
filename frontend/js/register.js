@@ -36,7 +36,7 @@
                       .addClass(result.success ? 'text-success' : 'text-danger');
 
                 if (result.success) {
-                  setTimeout(() => window.location.href = 'login.html', 500);
+                  setTimeout(() => window.location.href = 'pages/login.html', 500);
                 }
               },
               error: function(jqXHR, textStatus, errorThrown) {

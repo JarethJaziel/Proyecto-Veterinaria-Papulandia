@@ -14,7 +14,7 @@ $(document).ready(function() {
         // Si no está autenticado, O NO ES del tipo correcto...
         if (!data.auth || data.usuario.tipo !== 'admin') { 
             // ¡Lo sacamos de aquí!
-            window.location.href = '../pages/login.html';
+            window.location.href = 'pages/login.html';
             return;
         }
 
@@ -34,7 +34,7 @@ $(document).ready(function() {
     .fail(function() {
         // Si la llamada AJAX falla (error 401, 500, etc.),
         // asumimos que no está autenticado.
-        window.location.href = '../pages/login.html';
+        window.location.href = 'pages/login.html';
     });
 
 });

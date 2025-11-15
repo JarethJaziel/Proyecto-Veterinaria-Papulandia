@@ -1,1 +1,1 @@
-const RUTA_BASE = '/Proyecto-Veterinaria/';
+const RUTA_BASE = '../';
