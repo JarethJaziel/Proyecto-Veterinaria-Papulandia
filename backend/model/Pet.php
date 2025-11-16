@@ -26,6 +26,18 @@ class Pet {
         return $stmt->execute();
     }
 
+    public function getAll(){
+
+        $sql = "SELECT id AS mascota_id, nombre, especie, raza 
+                FROM mascotas";
+
+        $stmt = $this->conn->prepare($sql);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        return $result->fetch_assoc(); 
+
+    }
+
     public function getByUserId($usuario_id) {
         $sql = "SELECT id AS mascota_id, nombre, especie, raza 
                 FROM mascotas 

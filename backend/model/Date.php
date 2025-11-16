@@ -59,6 +59,26 @@ class Date {
         return $result ? $result->fetch_all(MYSQLI_ASSOC) : [];
     }
 
+    public function getAll() {
+        $sql = "SELECT id, mascota_id, fecha 
+                FROM citas 
+                ORDER BY fecha ASC";
+        $stmt = $this->conn->prepare($sql);
+
+        if ($stmt === false) {
+            return [];
+        }
+
+        $stmt->execute();
+        $result = $stmt->get_result();
+
+        return $result ? $result->fetch_all(MYSQLI_ASSOC) : [];
+    }
+
+    public function getTodayDates(){
+        //TODO
+    }
+
     public function getNextPetsDates($array_de_ids_mascota) {
         if (empty($array_de_ids_mascota)) {
             return [];

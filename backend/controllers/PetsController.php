@@ -43,6 +43,7 @@ class PetsController {
             $this->enviarRespuesta(500, false, "Error al registrar la mascota en la base de datos.");
         }
     }
+
     
     private function validateUser(){
         return !isset($_SESSION['usuario']) || !isset($_SESSION['usuario']['id']);

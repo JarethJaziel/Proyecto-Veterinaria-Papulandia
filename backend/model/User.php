@@ -15,6 +15,14 @@ class User {
         return $result->fetch_assoc(); 
     }
 
+    public function getAll(){
+        $sql = "SELECT id, nombre, apellidos, correo, contrasena, tipo FROM usuarios";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        return $result->fetch_assoc(); 
+    }
+
     public function create($nombres, $apellidos, $correo, $hash_contrasena, $tipo, $telefono) {
         $sql = "INSERT INTO usuarios (nombre, apellidos, correo, contrasena, tipo, telefono) 
                 VALUES (?, ?, ?, ?, ?, ?)";
