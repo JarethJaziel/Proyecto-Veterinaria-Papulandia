@@ -29,6 +29,14 @@ class PetsController {
             return;
         }
 
+        $hoy = date('Y-m-d');
+
+        // Validar fecha pasada estricta
+        if ($fecha_nacimiento > $hoy) {
+            $this->enviarRespuesta(400, false, "La fecha de nacimiento no debe ser futura a hoy.");
+            return;
+        }
+
         $exito = $this->modeloMascota->create(
             $usuario_id, 
             $nombre, 
