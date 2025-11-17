@@ -15,14 +15,28 @@ $(document).ready(function() {
                         .addClass(result.success ? 'text-success' : 'text-danger');
 
                 if (result.success) {
-                    const toPath = 'pages/cliente/dashboard_cliente'+'.html';
+                    const toPath = 'pages/cliente/ClientDashboardController'+'.html';
                     setTimeout(() => window.location.href = toPath, 500);
                     //dar o no success
                     
                 }
                 },
-                error: function() {
-                alert('Error al agendar cita');
+                error: function(xhr) {
+                    let msg = "Error desconocido.";
+
+                    try {
+                        // Intentar leer el JSON del backend
+                        const json = JSON.parse(xhr.responseText);
+                        msg = json.message ?? msg;
+                    } catch (e) {
+                        console.error("No se pudo parsear JSON del error", e);
+                    }
+
+                    // Mostrar mensaje en pantalla
+                    const msgDiv = $('#responseMessage');
+                    msgDiv.text(msg)
+                        .removeClass('text-success')
+                        .addClass('text-danger');
                 },
                 complete: function() {
                 btn.prop('disabled', false).text('Registrar');
@@ -36,7 +50,7 @@ $(document).ready(function() {
 
     // Llamada AJAX para cargar las mascotas del cliente
     $.ajax({
-        url: RUTA_BASE + 'backend/controllers/dashboard_clienteController.php',
+        url: RUTA_BASE + 'backend/api/api.php?action=get_client_pets',
         method: 'GET',
         dataType: 'json',
         xhrFields: { withCredentials: true }
@@ -54,13 +68,13 @@ $(document).ready(function() {
 
         
         // Limpiar el contenedor por si acaso
-        petsContainer.empty();
+        petsContainer.find('option:not([disabled])').remove();
         
 
     
 
             // Iterar y crear una tarjeta por cada mascota
-            const nombresUnicos = new Set();
+        const nombresUnicos = new Set();
 
 mascotas.forEach(mascota => {
     // Si el nombre ya se agregó, se salta
