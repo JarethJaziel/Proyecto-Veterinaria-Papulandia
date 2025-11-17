@@ -15,7 +15,7 @@ $(document).ready(function() {
                         .addClass(result.success ? 'text-success' : 'text-danger');
 
                 if (result.success) {
-                    const toPath = 'pages/cliente/ClientDashboardController'+'.html';
+                    const toPath = 'pages/cliente/dashboard_cliente'+'.html';
                     setTimeout(() => window.location.href = toPath, 500);
                     //dar o no success
                     
