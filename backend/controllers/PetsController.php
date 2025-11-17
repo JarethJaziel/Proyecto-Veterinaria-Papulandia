@@ -11,6 +11,7 @@ class PetsController {
     }
 
     public function create() {
+        date_default_timezone_set('America/Mexico_City');
 
         if ($this->validateUser()) {
             $this->enviarRespuesta(401, false, "Acceso no autorizado. Debes iniciar sesión.");

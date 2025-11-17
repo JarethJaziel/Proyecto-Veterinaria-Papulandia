@@ -10,7 +10,7 @@ class DatesController {
     }
 
     public function create() {
-        
+        date_default_timezone_set('America/Mexico_City');
         
         if (!isset($_SESSION['usuario']) || !isset($_SESSION['usuario']['id'])) {
             $this->enviarRespuesta(401, false, "Acceso no autorizado. Debes iniciar sesión.");
