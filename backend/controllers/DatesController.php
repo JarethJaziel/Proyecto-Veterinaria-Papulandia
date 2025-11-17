@@ -26,6 +26,14 @@ class DatesController {
         return;
         }
 
+        $hoy = date('Y-m-d');
+
+        // Validar fecha futura estricta
+        if ($fecha <= $hoy) {
+            $this->enviarRespuesta(400, false, "La fecha de la cita debe ser posterior a hoy.");
+            return;
+        }
+
         $fecha_hora = $fecha . ' ' . $hora . ':00';
 
         $exito = $this->modeloCita->create($mascota_id, $fecha_hora);
