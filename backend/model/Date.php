@@ -1,6 +1,7 @@
 <?php
 class Date {
     private $conn;
+    
 
     public function __construct($db_connection) {
         $this->conn = $db_connection;
@@ -94,5 +95,16 @@ class Date {
         // Devuelve un mapa: [id_mascota => fecha]
         return $citasMap;
     }
+
+    public function contarCitasHoy() {
+    date_default_timezone_set('America/Mexico_City');
+
+    $hoy = date("Y-m-d");
+    $sql = "SELECT COUNT(*) AS total FROM citas WHERE DATE(fecha) = '$hoy'  ";
+    $result = $this->conn->query($sql);
+
+    return $result->fetch_assoc()['total'] ?? 0;
+    }
+
 }
 ?>
