@@ -7,8 +7,8 @@ class Date {
         $this->conn = $db_connection;
     }
 
-    public function create($mascota_id, $fecha) {
-        $sql = "INSERT INTO citas (mascota_id, fecha) VALUES (?, ?)";
+    public function create($mascota_id, $motivo, $fecha) {
+        $sql = "INSERT INTO citas (mascota_id, motivo, fecha) VALUES (?, ?, ?)";
         $stmt = $this->conn->prepare($sql);
 
         if ($stmt === false) {
@@ -16,9 +16,11 @@ class Date {
         }
 
         // i = integer (mascota_id)
+        // s = string (motivo)
         // s = string (fecha)
-        $stmt->bind_param("is", 
+        $stmt->bind_param("iss", 
             $mascota_id, 
+            $motivo,
             $fecha
         );
 
@@ -97,10 +99,8 @@ class Date {
     }
 
     public function contarCitasHoy() {
-    date_default_timezone_set('America/Mexico_City');
-
-    $hoy = date("Y-m-d");
-    $sql = "SELECT COUNT(*) AS total FROM citas WHERE DATE(fecha) = '$hoy'  ";
+   
+    $sql = "SELECT COUNT(*) AS total FROM citas WHERE DATE(fecha) >= CURDATE()";
     $result = $this->conn->query($sql);
 
     return $result->fetch_assoc()['total'] ?? 0;
