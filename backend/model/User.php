@@ -32,5 +32,13 @@ class User {
         );
         return $stmt->execute(); // Devuelve true o false
     }
+
+    public function contarClientes() {
+    $sql = "SELECT COUNT(*) AS total FROM usuarios WHERE tipo = 'cliente'";
+    $result = $this->conn->query($sql);
+
+    return $result->fetch_assoc()['total'] ?? 0;
+    }
+
 }
 ?>

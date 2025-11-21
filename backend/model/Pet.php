@@ -60,5 +60,13 @@ class Pet {
 
         return $mascotas;
     }
+
+    public function contarMascotas() {
+    $sql = "SELECT COUNT(*) AS total FROM mascotas";
+    $result = $this->conn->query($sql);
+    
+    return $result->fetch_assoc()['total'] ?? 0;
+    }
+
 }
 ?>

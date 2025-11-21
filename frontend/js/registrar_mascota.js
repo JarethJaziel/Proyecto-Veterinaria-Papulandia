@@ -22,8 +22,22 @@
                     
                 }
                 },
-                error: function() {
-                alert('Error al registrar mascota');
+                error: function(xhr) {
+                    let msg = "Error desconocido.";
+
+                    try {
+                        // Intentar leer el JSON del backend
+                        const json = JSON.parse(xhr.responseText);
+                        msg = json.message ?? msg;
+                    } catch (e) {
+                        console.error("No se pudo parsear JSON del error", e);
+                    }
+
+                    // Mostrar mensaje en pantalla
+                    const msgDiv = $('#responseMessage');
+                    msgDiv.text(msg)
+                        .removeClass('text-success')
+                        .addClass('text-danger');
                 },
                 complete: function() {
                 btn.prop('disabled', false).text('Registrar');

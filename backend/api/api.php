@@ -26,6 +26,7 @@ require_once __DIR__ . '/../controllers/PetsController.php';
 require_once __DIR__ . '/../model/Date.php';         
 require_once __DIR__ . '/../controllers/DatesController.php';
 
+require_once __DIR__ . '/../controllers/AdminDashboardController.php';
 require_once __DIR__ . '/../controllers/ClientDashboardController.php';
 require_once __DIR__ . '/../controllers/AdminDashboardController.php';
 // --- Creación de "Servicios" ---
@@ -38,6 +39,7 @@ $controladorMascota = new PetsController($modeloMascota);
 $modeloCita = new Date($conn); 
 $controladorCita = new DatesController($modeloCita);
 
+$controladorAdminDashboard = new AdminDashboardController($modeloMascota, $modeloUsuario, $modeloCita);
 $controladorClientDashboard = new ClientDashboardController($modeloMascota, $modeloCita);
 $controladorAdminDashboard = new AdminDashboardController($modeloMascota, $modeloCita, $modeloUsuario);
 
@@ -64,9 +66,9 @@ switch ($action) {
         $controladorClientDashboard->getClienteDashboard();
         break;
 
-    case 'get_admin_dashboard_data':
-        $controladorAdminDashboard->getAdminDashboard();
-        break;        
+    case 'get_admin_stats':
+        $controladorAdminDashboard->getStats();
+        break;
 
     default:
         http_response_code(404);

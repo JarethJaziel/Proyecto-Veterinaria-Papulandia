@@ -11,6 +11,7 @@ class PetsController {
     }
 
     public function create() {
+        date_default_timezone_set('America/Mexico_City');
 
         if ($this->validateUser()) {
             $this->enviarRespuesta(401, false, "Acceso no autorizado. Debes iniciar sesión.");
@@ -26,6 +27,14 @@ class PetsController {
 
         if (empty($nombre) || empty($especie) || empty($raza) || empty($fecha_nacimiento)) {
             $this->enviarRespuesta(400, false, "Faltan datos obligatorios para la mascota.");
+            return;
+        }
+
+        $hoy = date('Y-m-d');
+
+        // Validar fecha pasada estricta
+        if ($fecha_nacimiento > $hoy) {
+            $this->enviarRespuesta(400, false, "La fecha de nacimiento no debe ser futura a hoy.");
             return;
         }
 
