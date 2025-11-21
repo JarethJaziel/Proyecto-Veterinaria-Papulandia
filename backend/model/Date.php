@@ -1,13 +1,14 @@
 <?php
 class Date {
     private $conn;
+    
 
     public function __construct($db_connection) {
         $this->conn = $db_connection;
     }
 
-    public function create($mascota_id, $fecha) {
-        $sql = "INSERT INTO citas (mascota_id, fecha) VALUES (?, ?)";
+    public function create($mascota_id, $motivo, $fecha) {
+        $sql = "INSERT INTO citas (mascota_id, motivo, fecha) VALUES (?, ?, ?)";
         $stmt = $this->conn->prepare($sql);
 
         if ($stmt === false) {
@@ -15,9 +16,11 @@ class Date {
         }
 
         // i = integer (mascota_id)
+        // s = string (motivo)
         // s = string (fecha)
-        $stmt->bind_param("is", 
+        $stmt->bind_param("iss", 
             $mascota_id, 
+            $motivo,
             $fecha
         );
 
@@ -94,5 +97,14 @@ class Date {
         // Devuelve un mapa: [id_mascota => fecha]
         return $citasMap;
     }
+
+    public function contarCitasHoy() {
+   
+    $sql = "SELECT COUNT(*) AS total FROM citas WHERE DATE(fecha) >= CURDATE()";
+    $result = $this->conn->query($sql);
+
+    return $result->fetch_assoc()['total'] ?? 0;
+    }
+
 }
 ?>

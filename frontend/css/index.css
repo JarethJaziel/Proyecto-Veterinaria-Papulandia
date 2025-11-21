@@ -6,6 +6,25 @@
             --light-color: #f4f5f7;
         }
         
+        /* Hace que el footer se quede abajo aunque el contenido sea corto */
+        html, body {
+            height: 100%;
+        }
+
+        body {
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Todo el contenido empuja al footer hacia abajo */
+        body > *:not(footer) {
+            flex-shrink: 0;
+        }
+
+        footer {
+            margin-top: auto;
+        }
+
         body {
             font-family: "MS Sans Serif", Geneva, sans-serif;
         }
