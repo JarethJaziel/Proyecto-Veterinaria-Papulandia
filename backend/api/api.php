@@ -41,7 +41,7 @@ $controladorCita = new DatesController($modeloCita);
 
 $controladorAdminDashboard = new AdminDashboardController($modeloMascota, $modeloUsuario, $modeloCita);
 $controladorClientDashboard = new ClientDashboardController($modeloMascota, $modeloCita);
-$controladorAdminDashboard = new AdminDashboardController($modeloMascota, $modeloCita, $modeloUsuario);
+$controladorAdminDashboard = new AdminDashboardController($modeloMascota, $modeloUsuario, $modeloCita);
 
 $action = $_GET['action'] ?? '';
 
@@ -61,6 +61,10 @@ switch ($action) {
     case 'register_cita':
         $controladorCita->create();
         break;  
+
+    case 'update_user':
+        $controladorAdminDashboard->updateUser();
+        break;
         
     case 'get_client_pets':
         $controladorClientDashboard->getClienteDashboard();
@@ -68,6 +72,10 @@ switch ($action) {
 
     case 'get_admin_stats':
         $controladorAdminDashboard->getStats();
+        break;
+
+    case 'get_all_clients':
+        $controladorAdminDashboard->getAllClients();
         break;
 
     default:

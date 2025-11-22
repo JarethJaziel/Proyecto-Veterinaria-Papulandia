@@ -64,7 +64,7 @@
         <!-- Botón agregar -->
         <div class="d-flex justify-content-between align-items-center mb-4">
             <h3 class="mb-0">Clientes Registrados</h3>
-            <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalCliente">
+            <button class="btn btn-primary" data-bs-toggle="modal" onclick="verCliente('nuevo')">
                 <i class="bi bi-person-plus"></i> Nuevo Cliente
             </button>
         </div>
@@ -78,7 +78,6 @@
                             <th>Nombre</th>
                             <th>Correo</th>
                             <th>Teléfono</th>
-                            <th>Dirección</th>
                             <th class="text-center">Acciones</th>
                         </tr>
                     </thead>
@@ -99,40 +98,45 @@
                     <h5 class="modal-title">Registrar Cliente</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
                 </div>
-
+                <p id="responseMessageCliente"></p>
                 <div class="modal-body">
-                    <form id="formCliente">
-                        <input type="hidden" id="clienteId">
+                    <form id="formCliente" action="backend/api/api.php">
+                        <input type="hidden" id="id" name="id"></input>
 
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label for="nombres" class="form-label">Nombres:</label>
+                                    <input type="text" id="nombres" name="nombres" class="form-control" required>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label for="apellidos" class="form-label">Apellidos:</label>
+                                    <input type="text" id="apellidos" name="apellidos" class="form-control" required>
+                                </div>
+                            </div>
+                        </div>
+                        
                         <div class="mb-3">
-                            <label class="form-label">Nombre Completo</label>
-                            <input type="text" class="form-control" id="nombre" required>
+                            <label for="email" class="form-label">Correo Electrónico:</label>
+                            <input type="email" id="email" name="email" class="form-control" placeholder="ejemplo@correo.com" required>
                         </div>
 
                         <div class="mb-3">
-                            <label class="form-label">Correo Electrónico</label>
-                            <input type="email" class="form-control" id="email" required>
+                            <label for="telefono" class="form-label">Teléfono: (Opcional)</label>
+                            <input type="tel" id="telefono" name="telefono" class="form-control" placeholder="XXX-XXX-XXXX">
                         </div>
 
-                        <div class="mb-3">
-                            <label class="form-label">Número Telefónico</label>
-                            <input type="tel" class="form-control" id="telefono" required>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                            
+                            <input type="submit" class="btn btn-primary" id="guardarCliente"></input>
                         </div>
-
-                        <div class="mb-3">
-                            <label class="form-label">Dirección</label>
-                            <textarea class="form-control" id="direccion" rows="2" required></textarea>
-                        </div>
-
                     </form>
                 </div>
 
-                <div class="modal-footer">
-                    <button class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-                    <button class="btn btn-primary" id="guardarCliente">
-                        Guardar
-                    </button>
-                </div>
+                
 
             </div>
         </div>

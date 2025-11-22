@@ -20,7 +20,15 @@ class User {
         $stmt = $this->conn->prepare($sql);
         $stmt->execute();
         $result = $stmt->get_result();
-        return $result->fetch_assoc(); 
+        return $result->fetch_all(MYSQLI_ASSOC); 
+    }
+
+    public function getAllClients(){
+        $sql = "SELECT id, nombre, apellidos, correo, telefono FROM usuarios WHERE tipo = 'cliente'";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        return $result->fetch_all(MYSQLI_ASSOC); 
     }
 
     public function create($nombres, $apellidos, $correo, $hash_contrasena, $tipo, $telefono) {
@@ -30,7 +38,23 @@ class User {
         $stmt->bind_param("ssssss", 
             $nombres, $apellidos, $correo, $hash_contrasena, $tipo, $telefono
         );
-        return $stmt->execute(); // Devuelve true o false
+        if ($stmt->execute()) {
+            return true;
+        } else {
+            // Si falla, devuelve el mensaje de error específico de mysqli
+            return $stmt->error; 
+        }
+    }
+
+    public function update($id, $nombres, $apellidos, $correo, $telefono) {
+        $sql = "UPDATE usuarios 
+                SET nombre = ?, apellidos = ?, correo = ?, telefono = ? 
+                WHERE id = ?";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->bind_param("ssssi", 
+            $nombres, $apellidos, $correo, $telefono, $id
+        );
+        return $stmt->execute();
     }
 
     public function contarClientes() {

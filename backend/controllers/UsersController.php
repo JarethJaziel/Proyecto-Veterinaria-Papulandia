@@ -53,10 +53,11 @@ class UsersController {
             $nombres, $apellidos, $correo, $contrasena, $tipo, $telefono
         );
 
-        if ($exito) {
-            $this->enviarRespuesta(200, true, "Usuario registrado con éxito.");
+        if ($exito === true) {
+            $this->enviarRespuesta(200, true, "Éxito");
         } else {
-            $this->enviarRespuesta(500, false, "Error al registrar el usuario.");
+            // $resultado trae el texto del error
+            $this->enviarRespuesta(500, false, "Error: " . $exito);
         }
     }
 
