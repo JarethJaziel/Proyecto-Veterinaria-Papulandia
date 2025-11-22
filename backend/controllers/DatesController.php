@@ -42,7 +42,7 @@ class DatesController {
         if ($exito) {
             $this->enviarRespuesta(200, true, "Cita registrada con éxito." );
         } else {
-            $this->enviarRespuesta(500, false, "Error al registrar la cita en la base de datos.");
+            $this->enviarRespuesta(406, false, "Error al registrar la cita en la base de datos.");
         }
     }
 

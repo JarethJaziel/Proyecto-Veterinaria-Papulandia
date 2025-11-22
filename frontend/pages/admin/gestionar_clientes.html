@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <base href="/Proyecto-Veterinaria/frontend/">
+    <meta charset="UTF-8">
+    <title>Gestionar Clientes - Papulandia</title>
+
+    <!-- Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Iconos -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Estilos -->
+    <link rel="stylesheet" href="css/dashboard_admin.css">
+
+    <!-- Favicon -->
+    <link rel="icon" href="resources/index/favicon.png" type="image/png">
+</head>
+
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="dashboard_admin.php">
+                <img src="https://cdn-icons-png.flaticon.com/512/403/403890.png" alt="Papulandia">
+                Papulandia
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto align-items-center">
+                    <li class="nav-item">
+                        <span class="user-info">
+                            <i class="bi bi-person-circle me-1"></i>
+                            <span id="navbarUsername"></span>
+                            <span id="navbarUserType"></span>
+                        </span>
+                    </li>
+                    <li class="nav-item">
+                        <a href="../backend/api/logout.php" class="btn btn-outline-light">
+                            <i class="bi bi-box-arrow-right"></i> Cerrar sesión
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Header -->
+    <div class="dashboard-header">
+        <div class="container">
+            <h1>Gestión de Clientes</h1>
+            <p>Administra la información de los clientes de Papulandia</p>
+        </div>
+    </div>
+
+    <!-- Contenido -->
+    <main class="container py-5">
+
+        <!-- Botón agregar -->
+        <div class="d-flex justify-content-between align-items-center mb-4">
+            <h3 class="mb-0">Clientes Registrados</h3>
+            <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalCliente">
+                <i class="bi bi-person-plus"></i> Nuevo Cliente
+            </button>
+        </div>
+
+        <!-- Tabla -->
+        <div class="table-section">
+            <div class="table-responsive">
+                <table class="table table-hover table-bordered align-middle">
+                    <thead class="table-light">
+                        <tr>
+                            <th>Nombre</th>
+                            <th>Correo</th>
+                            <th>Teléfono</th>
+                            <th>Dirección</th>
+                            <th class="text-center">Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tablaClientes">
+                        <!-- Se llena con JS -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </main>
+
+    <!-- Modal Agregar/Editar Cliente -->
+    <div class="modal fade" id="modalCliente" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+
+                <div class="modal-header">
+                    <h5 class="modal-title">Registrar Cliente</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+
+                <div class="modal-body">
+                    <form id="formCliente">
+                        <input type="hidden" id="clienteId">
+
+                        <div class="mb-3">
+                            <label class="form-label">Nombre Completo</label>
+                            <input type="text" class="form-control" id="nombre" required>
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label">Correo Electrónico</label>
+                            <input type="email" class="form-control" id="email" required>
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label">Número Telefónico</label>
+                            <input type="tel" class="form-control" id="telefono" required>
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label">Dirección</label>
+                            <textarea class="form-control" id="direccion" rows="2" required></textarea>
+                        </div>
+
+                    </form>
+                </div>
+
+                <div class="modal-footer">
+                    <button class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                    <button class="btn btn-primary" id="guardarCliente">
+                        Guardar
+                    </button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal: Mascotas de Cliente -->
+    <div class="modal fade" id="modalMascotas" tabindex="-1">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+
+                <div class="modal-header">
+                    <h5 class="modal-title">Mascotas de Cliente</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+
+                <div class="modal-body">
+
+                    <h4 id="nombreClienteMasc"></h4>
+
+                    <div class="text-end mb-3">
+                        <button class="btn btn-primary btn-sm" id="btnAgregarMascota">
+                            <i class="fas fa-plus"></i> Nueva Mascota
+                        </button>
+                    </div>
+
+                    <div id="contenedorMascotas" class="row g-3">
+                        <!-- Aquí se cargan las tarjetas -->
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Footer -->
+    <footer class="mt-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <h5>Papulandia - Gestión de Clientes</h5>
+                    <p class="mb-3">Administrador</p>
+                </div>
+                <div class="col-md-6 text-md-end">
+                    <div class="footer-links">
+                        <a href="pages/info/terminos.html">Términos y Condiciones</a>
+                        <a href="#">Privacidad</a>
+                        <a href="#">Contacto</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+
+    <script src="js/main.js"></script>
+    <script src="js/admin/admin_authentication.js"></script>
+    <script src="js/admin/dashboard_admin.js"></script>
+
+    <!-- Tu script de clientes -->
+    <script src="js/admin/gestionar_clientes.js"></script>
+
+</body>
+</html>
