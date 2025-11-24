@@ -1,11 +1,11 @@
 <?php
 
-require_once __DIR__ . '/../model/Usuario.php';
+require_once __DIR__ . '/../model/User.php';
 
-class UsuariosController {
+class UsersController {
     private $modeloUsuario;
 
-    public function __construct(Usuario $modeloUsuario) {
+    public function __construct(User $modeloUsuario) {
         $this->modeloUsuario = $modeloUsuario;
     }
 
@@ -18,7 +18,7 @@ class UsuariosController {
             return; // Detiene la ejecución
         }
 
-        $usuarioEncontrado = $this->modeloUsuario->buscarPorCorreo($correo);
+        $usuarioEncontrado = $this->modeloUsuario->getByEmail($correo);
 
         if ($usuarioEncontrado && password_verify($contrasena_form, $usuarioEncontrado['contrasena'])) {
             // Éxito
@@ -49,15 +49,66 @@ class UsuariosController {
 
         $contrasena = password_hash($contrasena_form, PASSWORD_DEFAULT);
 
-        $exito = $this->modeloUsuario->crear(
+        $exito = $this->modeloUsuario->create(
             $nombres, $apellidos, $correo, $contrasena, $tipo, $telefono
         );
 
-        if ($exito) {
-            $this->enviarRespuesta(200, true, "Usuario registrado con éxito.");
+        if ($exito === true) {
+            $this->enviarRespuesta(200, true, "Éxito");
         } else {
-            $this->enviarRespuesta(500, false, "Error al registrar el usuario.");
+            // $resultado trae el texto del error
+            $this->enviarRespuesta(500, false, "Error: " . $exito);
         }
+    }
+
+    public function getAllClients(){
+        if($this->validateAdmin()){
+            $this->enviarRespuesta(403, false, "Acceso no autorizado.");
+            return;
+        }
+
+        $clientes = $this->modeloUsuario->getAllClients();
+
+        $this->enviarRespuesta(200,true,
+        "Lista de clientes obtenida exitosamente.",
+      [
+                            "clientes" => $clientes
+                        ]
+        );
+
+    }
+
+    public function updateUser(){
+        if($this->validateAdmin()){
+            $this->enviarRespuesta(403, false, "Acceso no autorizado.");
+            return;
+        }
+
+        $id = $_POST['id'] ?? '';
+        $nombres = $_POST['nombres'] ?? '';
+        $apellidos = $_POST['apellidos'] ?? '';
+        $correo = $_POST['email'] ?? '';
+        $telefono = $_POST['telefono'] ?? '';
+
+        if (empty($id) || empty($nombres) || empty($apellidos) || empty($correo)) {
+            $this->enviarRespuesta(400, false, "Faltan datos obligatorios.");
+            return;
+        }
+
+        $exito = $this->modeloUsuario->update(
+            $id, $nombres, $apellidos, $correo, $telefono
+        );
+
+        if ($exito) {
+            $this->enviarRespuesta(200, true, "Usuario actualizado con éxito.");
+        } else {
+            $this->enviarRespuesta(500, false, "Error al actualizar el usuario en la base de datos.");
+        }
+    }
+
+    private function validateAdmin(){
+        return (!isset($_SESSION['usuario']) || !isset($_SESSION['usuario']['id'])) 
+                && ($_SESSION['usuario']['tipo'] !== 'admin');
     }
 
     private function enviarRespuesta($codigoEstado, $success, $message, $datosAdicionales = []) {

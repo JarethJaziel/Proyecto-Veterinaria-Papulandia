@@ -22,30 +22,62 @@
                 $(this).parent().removeClass('focused');
             });
 
+            // ----------------------------
+            // VALIDACIONES ANTES DE ENVIAR
+            // ----------------------------
             $('#registerForm').on('submit', function(e) {
-            e.preventDefault();
-            $.ajax({
-              url: $(this).attr('action'),
-              type: 'POST',
-              data: $(this).serialize(),
-              dataType: 'json',
-              success: function(result) {
-                const msgDiv = $('#responseMessage');
-                msgDiv.text(result.message)
-                      .removeClass('text-success text-danger')
-                      .addClass(result.success ? 'text-success' : 'text-danger');
 
-                if (result.success) {
-                  setTimeout(() => window.location.href = 'login.html', 500);
+                const msgDiv = $('#responseMessage');
+                msgDiv.removeClass('text-success text-danger').text("");
+
+                // --------- Validar apellidos: EXACTAMENTE 2 ---------
+                const apellidos = $('#apellidos').val().trim();
+                const partes = apellidos.split(/\s+/);
+
+                if (partes.length !== 2) {
+                    e.preventDefault();
+                    msgDiv.text('Debes ingresar exactamente dos apellidos.')
+                          .addClass('text-danger');
+                    return;
                 }
-              },
-              error: function(jqXHR, textStatus, errorThrown) {
-                  console.error("AJAX falló. Razón: " + textStatus); // <-- Esto dirá 'parsererror'
-                  console.error("Respuesta del servidor (lo que rompió el JSON):");
-                  console.error(jqXHR.responseText); // <-- Esto imprimirá el Warning o el espacio en blanco
-                  
-                  alert('Ocurrió un error. Revisa la consola (F12) para detalles.');
-              }
+
+                // --------- Validar correo ---------
+                const email = $('#email').val().trim();
+                const regexCorreo = /^[a-zA-Z0-9]+([._%+-]?[a-zA-Z0-9]+)*@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+
+                if (!regexCorreo.test(email)) {
+                    e.preventDefault();
+                    msgDiv.text('Por favor ingresa un correo electrónico válido.')
+                          .addClass('text-danger');
+                    return;
+                }
+
+                // Si llegan aquí, NO detenemos el form → entra AJAX
+                e.preventDefault();
+
+                $.ajax({
+                    url: RUTA_BASE + $(this).attr('action'),
+                    type: 'POST',
+                    data: $(this).serialize(),
+                    dataType: 'json',
+
+                    success: function(result) {
+                        msgDiv.text(result.message)
+                              .removeClass('text-success text-danger')
+                              .addClass(result.success ? 'text-success' : 'text-danger');
+
+                        if (result.success) {
+                            setTimeout(() => window.location.href = 'pages/login.html', 500);
+                        }
+                    },
+
+                    error: function(jqXHR, textStatus) {
+                        console.error("AJAX falló. Razón: " + textStatus);
+                        console.error("Respuesta del servidor:");
+                        console.error(jqXHR.responseText);
+
+                        alert('Ocurrió un error. Revisa consola para más detalles.');
+                    }
+                });
             });
-          });
         });

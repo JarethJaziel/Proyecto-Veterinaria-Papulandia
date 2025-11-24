@@ -1,18 +1,19 @@
 <?php
 
-require_once __DIR__ . '/../model/Mascota.php';
+require_once __DIR__ . '/../model/Pet.php';
 
-class MascotasController {
+class PetsController {
 
     private $modeloMascota;
 
-    public function __construct(Mascota $modeloMascota){
+    public function __construct(Pet $modeloMascota){
         $this->modeloMascota = $modeloMascota;
     }
 
-    public function crear() {
-        
-        if (!isset($_SESSION['usuario']) || !isset($_SESSION['usuario']['id'])) {
+    public function create() {
+        date_default_timezone_set('America/Mexico_City');
+
+        if ($this->validateUser()) {
             $this->enviarRespuesta(401, false, "Acceso no autorizado. Debes iniciar sesión.");
             return;
         }
@@ -29,7 +30,15 @@ class MascotasController {
             return;
         }
 
-        $exito = $this->modeloMascota->crear(
+        $hoy = date('Y-m-d');
+
+        // Validar fecha pasada estricta
+        if ($fecha_nacimiento > $hoy) {
+            $this->enviarRespuesta(400, false, "La fecha de nacimiento no debe ser futura a hoy.");
+            return;
+        }
+
+        $exito = $this->modeloMascota->create(
             $usuario_id, 
             $nombre, 
             $especie, 
@@ -43,7 +52,11 @@ class MascotasController {
             $this->enviarRespuesta(500, false, "Error al registrar la mascota en la base de datos.");
         }
     }
+
     
+    private function validateUser(){
+        return !isset($_SESSION['usuario']) || !isset($_SESSION['usuario']['id']);
+    }
     private function enviarRespuesta($codigoEstado, $success, $message, $datosAdicionales = []) {
         http_response_code($codigoEstado);
         $respuesta = ["success" => $success, "message" => $message];

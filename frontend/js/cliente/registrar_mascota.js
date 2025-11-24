@@ -5,7 +5,7 @@
             
             const btn = $(this).find('button[type="submit"]');
             $.ajax({
-                url: $(this).attr('action'),
+                url: RUTA_BASE + $(this).attr('action'),
                 type: 'POST',
                 data: $(this).serialize(),
                 dataType: 'json',
@@ -16,14 +16,28 @@
                         .addClass(result.success ? 'text-success' : 'text-danger');
 
                 if (result.success) {
-                    const toPath = 'dashboard_cliente'+'.html';
+                    const toPath = 'pages/cliente/dashboard_cliente'+'.html';
                     setTimeout(() => window.location.href = toPath, 500);
                     //dar o no success
                     
                 }
                 },
-                error: function() {
-                alert('Error al registrar mascota');
+                error: function(xhr) {
+                    let msg = "Error desconocido.";
+
+                    try {
+                        // Intentar leer el JSON del backend
+                        const json = JSON.parse(xhr.responseText);
+                        msg = json.message ?? msg;
+                    } catch (e) {
+                        console.error("No se pudo parsear JSON del error", e);
+                    }
+
+                    // Mostrar mensaje en pantalla
+                    const msgDiv = $('#responseMessage');
+                    msgDiv.text(msg)
+                        .removeClass('text-success')
+                        .addClass('text-danger');
                 },
                 complete: function() {
                 btn.prop('disabled', false).text('Registrar');

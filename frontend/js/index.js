@@ -1,3 +1,4 @@
+
 $(document).ready(function() {
 
     // 1. Busca el botón con id "btnDashboard" y espera un clic
@@ -8,7 +9,7 @@ $(document).ready(function() {
 
         // 3. Inicia la revisión de la sesión contra tu backend
         $.ajax({
-            url: '../backend/api/checkSession.php', // Ruta a tu API
+            url: RUTA_BASE + 'backend/api/checkSession.php', // Ruta a tu API
             method: 'GET',
             dataType: 'json',
             xhrFields: { 
@@ -22,9 +23,9 @@ $(document).ready(function() {
                 const tipo = data.usuario.tipo;
 
                 if (tipo === 'admin') {
-                    window.location.href = 'pages/dashboard_admin.html';
+                    window.location.href = 'pages/admin/dashboard_admin.html';
                 } else if (tipo === 'cliente') {
-                    window.location.href = 'pages/dashboard_cliente.html';
+                    window.location.href = 'pages/cliente/dashboard_cliente.html';
                 } else {
                     // Tipo desconocido, enviar a login por si acaso
                     window.location.href = 'pages/login.html';
@@ -62,14 +63,4 @@ $(document).ready(function() {
 
 });
 
-// --- Forzar que al recargar siempre se muestre el inicio ---
-$(window).on('load', function() {
-    // Elimina cualquier hash del URL
-    if (window.location.hash) {
-        history.replaceState(null, null, window.location.pathname);
-    }
-
-    // Desplaza suavemente hacia arriba (inicio)
-    $('html, body').animate({ scrollTop: 0 }, 300);
-});
 
