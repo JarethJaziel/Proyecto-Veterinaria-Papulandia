@@ -6,6 +6,21 @@
             --light-color: #f4f5f7;
         }
         
+        /* Permite que el footer quede siempre abajo */
+        html, body {
+            height: 100%;
+        }
+
+        body {
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* El contenido se expande y empuja el footer */
+        main {
+            flex: 1;
+        }
+
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
@@ -128,7 +143,14 @@
             box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
             margin-bottom: 30px;
         }
-        
+        .citas-section {
+            background: white;
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+            margin-bottom: 30px;
+        }
+
         .pet-card {
             border: 1px solid #e9ecef;
             border-radius: 15px;

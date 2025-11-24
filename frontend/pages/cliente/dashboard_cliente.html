@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
+    <base href="/Proyecto-Veterinaria/frontend/">
     <meta charset="UTF-8">
     <title>Panel del Cliente - Papulandia</title>
     <!-- Bootstrap CSS -->
@@ -8,13 +9,15 @@
     <!-- Iconos -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="../css/dashboard_cliente.css" rel="stylesheet">
+    <link href="css/dashboard_cliente.css" rel="stylesheet">
+    <!-- Favicon -->
+    <link rel="icon" href="resources/index/favicon.png" type="image/png">
 </head>
 <body>
     <!-- Navbar -->
     <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
         <div class="container">
-            <a class="navbar-brand" href="../../index.php">
+            <a class="navbar-brand" href="../index.php">
                 <img src="https://cdn-icons-png.flaticon.com/512/403/403890.png" alt="Papulandia">
                 Papulandia
             </a>
@@ -31,7 +34,7 @@
                         </span>
                     </li>
                     <li class="nav-item">
-                        <a href="../../backend/api/logout.php" class="btn btn-outline-light">
+                        <a href="../backend/api/logout.php" class="btn btn-outline-light">
                             <i class="bi bi-box-arrow-right"></i> Cerrar sesión
                         </a>
                     </li>
@@ -60,7 +63,7 @@
                         </div>
                         <h5 class="card-title">Registrar Mascota</h5>
                         <p class="card-text text-muted">Añade una nueva mascota a tu perfil</p>
-                        <a href="registrar_mascota.html" class="btn btn-dashboard">Registrar</a>
+                        <a href="pages/cliente/registrar_mascota.html" class="btn btn-dashboard">Registrar</a>
                     </div>
                 </div>
             </div>
@@ -73,7 +76,7 @@
                         </div>
                         <h5 class="card-title">Agendar Cita</h5>
                         <p class="card-text text-muted">Reserva una cita para tu mascota</p>
-                        <a href="agendar_cita.php" class="btn btn-dashboard">Agendar</a>
+                        <a href="pages/cliente/registrar_cita.html" class="btn btn-dashboard">Agendar</a>
                     </div>
                 </div>
             </div>
@@ -104,34 +107,62 @@
                 </div>
             </div>
         </div>
-<!-- Mascotas -->
-       <div class="pets-section">
-    <div class="d-flex justify-content-between align-items-center mb-4">
-        <h3 class="mb-0">Tus Mascotas</h3>
-        <a href="mascotas.php" class="btn btn-outline-primary">Ver Todas</a>
-    </div>
-    
-    <div class="row g-4" style="display: none;"></div>
-    
-    <div class="text-center py-4" id="no-pets-message" style="display: block;">
-        <i class="fas fa-paw fa-3x text-muted mb-3"></i>
-        <h5 class="text-muted">Aún no tienes mascotas registradas</h5>
-        <p class="text-muted">Comienza registrando tu primera mascota</p>
-        <a href="registrar_mascota.html" class="btn btn-dashboard">Registrar Primera Mascota</a>
-    </div>
-</div>
 
+        <!-- Sección de Mascotas Recientes -->
+        <div class="pets-section">
+            <div class="d-flex justify-content-between align-items-center mb-4">
+                <h3 class="mb-0">Tus Mascotas</h3>
+                <a href="mascotas.php" class="btn btn-outline-primary">Ver Todas</a>
+            </div>
+            
+            <div class="row g-4" style="display: none;">
+                <!-- desde jquery -->
+                <div class="col-md-6">
+                    <div class="pet-card d-flex align-items-center">
+                        <div class="pet-avatar">
+                            <i class="fas fa-dog"></i>
+                        </div>
+                        <div>
+                            <h5 class="mb-1">Nombre</h5>
+                            <p class="text-muted mb-1">Raza • Tipo</p>
+                            <small class="text-success">PróximaCita</small>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-md-6">
+                    <div class="pet-card d-flex align-items-center">
+                        <div class="pet-avatar">
+                            <i class="fas fa-dog"></i>
+                        </div>
+                        <div>
+                            <h5 class="mb-1">Nombre</h5>
+                            <p class="text-muted mb-1">Raza • Tipo</p>
+                            <small class="text-success">PróximaCita</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Mensaje si no hay mascotas (activamos y desactivamos dependiendo de) -->
+            <div class="text-center py-4" id="no-pets-message" style="display: none;">
+                <i class="fas fa-paw fa-3x text-muted mb-3"></i>
+                <h5 class="text-muted">Aún no tienes mascotas registradas</h5>
+                <p class="text-muted">Comienza registrando tu primera mascota</p>
+                <a href="pages/cliente/registrar_mascota.html" class="btn btn-dashboard">Registrar Primera Mascota</a>
+            </div>
+        </div>
 
         <!-- Próximas Citas -->
-        <div class="pets-section">
+        <div class="citas-section">
             <div class="d-flex justify-content-between align-items-center mb-4">
                 <h3 class="mb-0">Próximas Citas</h3>
                 <a href="citas.php" class="btn btn-outline-primary">Ver Todas</a>
             </div>
-            <!--
+            
             <div class="row g-4">
-                 Hola bro, esto desde jquery activamos el display y le cambiamos el valor a lo de la base de datos cuando la tengamos 
-                <div class="col-md-6" style="display: none;">
+                <!-- Hola bro, esto desde jquery activamos el display y le cambiamos el valor a lo de la base de datos cuando la tengamos -->
+                <div class="col-md-6" style="display: true;">
                     <div class="pet-card">
                         <div class="d-flex justify-content-between align-items-start mb-2">
                             <h5 class="mb-0">Ejemplo</h5>
@@ -143,7 +174,7 @@
                     </div>
                 </div>
                 
-                <div class="col-md-6" style="display: none;">
+                <div class="col-md-6" style="display: true;">
                     <div class="pet-card">
                         <div class="d-flex justify-content-between align-items-start mb-2">
                             <h5 class="mb-0">Ejemplo</h5>
@@ -154,7 +185,7 @@
                         <p class="text-muted mb-0"><i class="fas fa-user-md me-2"></i>nombreDoctor</p>
                     </div>
                 </div>
-            </div>-->
+            </div>
             
             <!-- Mensaje si no hay citas (lo mismo, activamos y desactivamos dependiendo de)-->
             <div class="text-center py-4" id="no-appointments-message" style="display: true;">
@@ -181,7 +212,7 @@
                 </div>
                 <div class="col-md-6 text-md-end">
                     <div class="footer-links">
-                        <a href="terminos.html">Términos y Condiciones</a>
+                        <a href="pages/info/terminos.html">Términos y Condiciones</a>
                         <a href="#">Políticas de Privacidad</a>
                         <a href="#">Contacto</a>
                     </div>
@@ -192,8 +223,10 @@
 
     <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="../js/dashboard_cliente.js"></script>
-   
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    
+    <script src="js/main.js"></script>
+    <script src="js/cliente/client_authentication.js"></script>
+    <script src="js/cliente/dashboard_cliente.js"></script>
 </body>
 </html>
