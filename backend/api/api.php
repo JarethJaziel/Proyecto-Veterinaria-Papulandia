@@ -65,8 +65,13 @@ switch ($action) {
     case 'update_user':
         $controladorUsuario->updateUser();
         break;
-        
+
+    //Send client id in post
     case 'get_client_pets':
+        $controladorMascota->getByUser();
+        break;
+        
+    case 'get_client_dashboard':
         $controladorClientDashboard->getClienteDashboard();
         break;
 

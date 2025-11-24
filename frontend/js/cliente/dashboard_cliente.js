@@ -1,7 +1,7 @@
 $(document).ready(function() {
 
      $.ajax({
-        url: RUTA_BASE + 'backend/api/api.php?action=get_client_pets',
+        url: RUTA_BASE + 'backend/api/api.php?action=get_client_dashboard',
         method: 'GET',
         dataType: 'json',
         xhrFields: { withCredentials: true }
