@@ -54,7 +54,7 @@ $(document).ready(function () {
     $('#formCliente').on('submit', function(e) {
         e.preventDefault();
         const btn = $(this).find('button[type="submit"]')
-        let id = $('#id').val(); 
+        let id = $('#id_cliente').val();
         console.log("ID del cliente:", id);
         let action = id ? 'update_user' : 'register_user';
 
@@ -101,7 +101,7 @@ function verCliente(modo, id = null, nombre = null, apellidos = null, correo = n
 
     $("#formCliente")[0].reset();
     
-    $("#clienteId").val(id); 
+    $("#id_cliente").val(id); 
     console.log($("#clienteId").val());
     // Si es nuevo
     if (modo === "nuevo") {

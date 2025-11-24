@@ -56,7 +56,7 @@
                 e.preventDefault();
 
                 $.ajax({
-                    url: $(this).attr('action'),
+                    url: RUTA_BASE + $(this).attr('action'),
                     type: 'POST',
                     data: $(this).serialize(),
                     dataType: 'json',
@@ -67,7 +67,7 @@
                               .addClass(result.success ? 'text-success' : 'text-danger');
 
                         if (result.success) {
-                            setTimeout(() => window.location.href = 'login.html', 500);
+                            setTimeout(() => window.location.href = 'pages/login.html', 500);
                         }
                     },
 
