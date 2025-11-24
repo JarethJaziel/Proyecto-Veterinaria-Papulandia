@@ -63,7 +63,7 @@ switch ($action) {
         break;  
 
     case 'update_user':
-        $controladorAdminDashboard->updateUser();
+        $controladorUsuario->updateUser();
         break;
         
     case 'get_client_pets':
@@ -75,7 +75,7 @@ switch ($action) {
         break;
 
     case 'get_all_clients':
-        $controladorAdminDashboard->getAllClients();
+        $controladorUsuario->getAllClients();
         break;
 
     default:
