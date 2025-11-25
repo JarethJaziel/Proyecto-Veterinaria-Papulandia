@@ -46,6 +46,22 @@ class DatesController {
         }
     }
 
+    public function getAll(){
+
+        $dates = $this->modeloCita->getAll();
+
+        $this->enviarRespuesta(200,true,
+        "Lista de citas obtenidas exitosamente",
+      [
+                            "citas" => $dates
+                        ]
+        );
+
+
+    }
+
+
+
     private function enviarRespuesta($codigoEstado, $success, $message, $datosAdicionales = []) {
         http_response_code($codigoEstado);
         $respuesta = ["success" => $success, "message" => $message];

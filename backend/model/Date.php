@@ -63,9 +63,21 @@ class Date {
     }
 
     public function getAll() {
-        $sql = "SELECT id, mascota_id, fecha 
-                FROM citas 
-                ORDER BY fecha ASC";
+        $sql = "SELECT 
+            c.id AS id,
+            c.fecha,
+            c.mascota_id,
+            c.motivo AS motivo,
+            m.nombre AS nombre_mascota,
+            u.id AS usuario_id,
+            u.nombre AS nombre_usuario,
+            u.apellidos AS apellido_usuario
+
+        FROM citas c
+        INNER JOIN mascotas m ON c.mascota_id = m.id
+        INNER JOIN usuarios u ON m.usuario_id = u.id
+        ORDER BY c.fecha ASC";
+
         $stmt = $this->conn->prepare($sql);
 
         if ($stmt === false) {

@@ -31,6 +31,9 @@ class User {
         return $result->fetch_all(MYSQLI_ASSOC); 
     }
 
+   
+
+
     public function create($nombres, $apellidos, $correo, $hash_contrasena, $tipo, $telefono) {
         $sql = "INSERT INTO usuarios (nombre, apellidos, correo, contrasena, tipo, telefono) 
                 VALUES (?, ?, ?, ?, ?, ?)";

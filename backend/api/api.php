@@ -77,6 +77,9 @@ switch ($action) {
     case 'get_all_clients':
         $controladorUsuario->getAllClients();
         break;
+    case 'get_all_citas':
+        $controladorCita->getAll();
+        break;
 
     default:
         http_response_code(404);

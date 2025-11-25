@@ -78,6 +78,8 @@ class UsersController {
 
     }
 
+    
+
     public function updateUser(){
         if($this->validateAdmin()){
             $this->enviarRespuesta(403, false, "Acceso no autorizado.");

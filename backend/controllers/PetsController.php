@@ -53,6 +53,20 @@ class PetsController {
         }
     }
 
+
+    public function getAll(){
+        
+        $clientes = $this->modeloMascota->getAll();
+
+        $this->enviarRespuesta(200,true,
+        "Lista de clientes y mascotas obtenida exitosamente.",
+      [
+                            "clientes" => $clientes
+                        ]
+        );
+
+    }
+
     
     private function validateUser(){
         return !isset($_SESSION['usuario']) || !isset($_SESSION['usuario']['id']);
