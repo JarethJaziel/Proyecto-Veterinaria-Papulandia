@@ -13,13 +13,6 @@ $(document).ready(function () {
                 console.error("Error:", response.message);
                 return;
             }
-            alert(JSON.stringify(response, null, 2));
-            /*
-            response.clientes.forEach(cli => {
-                alert(cli.nombre)
-            });
-              */
-
             const container = $('#contenedorCitas');
             container.empty();
             response.citas.forEach(cita => {
@@ -90,7 +83,7 @@ $(document).on("click", ".btnHistorial", function () {
     $("#modalHistorial").modal("show");
 
     $.ajax({
-        url: RUTA_BASE + "backend/api/api.php?action=view_history",
+        url: RUTA_BASE + "backend/api/api.php?action=get_pet_history",
         method: "GET",
         data: { mascota_id: mascotaSeleccionada },
         dataType: "json"

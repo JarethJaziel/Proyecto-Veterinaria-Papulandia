@@ -105,18 +105,18 @@ function verHistorial(idMascota) {
     
     // 2. Hacer la petición AJAX
     $.ajax({
-        url: 'backend/api/api.php?action=get_pet_history',
+        url: RUTA_BASE + 'backend/api/api.php?action=get_pet_history',
         type: 'GET',
         data: {mascota_id: idMascota },
         success: function(response) {
             
-            if(response.length > 0) {
-                 response.forEach(hist => {
+            if(response.data.length > 0) {
+                 response.data.forEach(hist => {
                      $('#tablaHistorialBody').append(`
                         <tr>
                             <td>${hist.fecha}</td>
                             <td>${hist.procedimiento}</td>
-                            <td>Dr. Jareth}</td>
+                            <td>Dr. Jareth</td>
                         </tr>
                      `);
                  });

@@ -46,14 +46,7 @@ $(document).ready(function () {
                         <td>${cita.nombre_mascota}</td> <td>${cita.fecha}</td>
                         <td>${cita.motivo}</td>
                         <td><span class="badge ${estadoClass} text-white p-2">${estadoTexto}</span></td>
-                        <td>
-                            <button class="btn btn-sm btn-outline-primary me-1 btn-editar-cita" data-id="${cita.cita_id}">
-                                <i class="fas fa-edit"></i>
-                            </button>
-                            <button class="btn btn-sm btn-outline-danger btn-eliminar-cita" data-id="${cita.cita_id}">
-                                <i class="fas fa-times"></i>
-                            </button>
-                        </td>
+                        
                     </tr>
                 `;
                 tbody.append(fila);

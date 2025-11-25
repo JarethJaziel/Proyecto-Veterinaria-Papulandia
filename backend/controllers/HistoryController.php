@@ -26,7 +26,7 @@ class HistoryController {
     }
 }
 
-public function viewHistory() {
+public function getHistoryByPetId() {
     $mascota_id = $_GET["mascota_id"] ?? null;
 
     if (!$mascota_id) {

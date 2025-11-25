@@ -96,8 +96,8 @@ switch ($action) {
        $controladorHistorial->create();
        break;
 
-    case 'view_history':
-    $controladorHistorial->viewHistory();
+    case 'get_pet_history':
+    $controladorHistorial->getHistoryByPetId();
     break;
     
     case 'delete_user':
