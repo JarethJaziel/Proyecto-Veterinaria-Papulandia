@@ -78,6 +78,46 @@ class UsersController {
 
     }
 
+    public function getAllUsers(){
+        if($this->validateAdmin()){
+            $this->enviarRespuesta(403, false, "Acceso no autorizado.");
+            return;
+        }
+
+        $usuarios = $this->modeloUsuario->getAll();
+
+        $this->enviarRespuesta(200,true,
+        "Lista de usuarios obtenida exitosamente.",
+      [
+                            "usuarios" => $usuarios
+                        ]
+        );
+
+    }
+
+    public function switchUserType(){
+        if($this->validateAdmin()){
+            $this->enviarRespuesta(403, false, "Acceso no autorizado.");
+            return;
+        }
+
+        $id = $_POST['id'] ?? '';
+        $nuevoTipo = $_POST['new_type'] ?? '';
+
+        if (empty($id) || empty($nuevoTipo) || !in_array($nuevoTipo, ['admin', 'cliente'])) {
+            $this->enviarRespuesta(400, false, "Datos inválidos.");
+            return;
+        }
+
+        $exito = $this->modeloUsuario->updateUserType($id, $nuevoTipo);
+        if ($exito) {
+            $this->enviarRespuesta(200, true, "Tipo de usuario actualizado con éxito.");
+        } else {
+            $this->enviarRespuesta(500, false, "Error al actualizar el tipo de usuario en la base de datos.");
+        }   
+        
+    }
+
     public function updateUser(){
         if($this->validateAdmin()){
             $this->enviarRespuesta(403, false, "Acceso no autorizado.");
@@ -105,6 +145,28 @@ class UsersController {
             $this->enviarRespuesta(500, false, "Error al actualizar el usuario en la base de datos.");
         }
     }
+
+    public function deleteUser(){
+        if($this->validateAdmin()){
+            $this->enviarRespuesta(403, false, "Acceso no autorizado.");
+            return;
+        }
+
+        $id = $_POST['id'] ?? '';
+
+        if (empty($id)) {
+            $this->enviarRespuesta(400, false, "ID de usuario faltante.");
+            return;
+        }
+
+        $exito = $this->modeloUsuario->delete($id);
+        if ($exito) {
+            $this->enviarRespuesta(200, true, "Usuario eliminado con éxito.");
+        } else {
+            $this->enviarRespuesta(500, false, "Error al eliminar el usuario de la base de datos.");
+        }   
+        
+    }   
 
     private function validateAdmin(){
         return (!isset($_SESSION['usuario']) || !isset($_SESSION['usuario']['id'])) 

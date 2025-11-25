@@ -78,6 +78,18 @@ switch ($action) {
         $controladorUsuario->getAllClients();
         break;
 
+    case 'get_all_users':
+        $controladorUsuario->getAllUsers();
+        break;
+
+    case 'switch_user_type':
+        $controladorUsuario->switchUserType();
+        break;
+
+        case 'delete_user':
+        $controladorUsuario->deleteUser();
+        break;
+
     default:
         http_response_code(404);
         echo json_encode(["success" => false, "message" => "Acción no válida."]);
