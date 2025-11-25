@@ -26,6 +26,9 @@ require_once __DIR__ . '/../controllers/PetsController.php';
 require_once __DIR__ . '/../model/Date.php';         
 require_once __DIR__ . '/../controllers/DatesController.php';
 
+require_once __DIR__ . '/../model/History.php';         
+require_once __DIR__ . '/../controllers/HistoryController.php';
+
 require_once __DIR__ . '/../controllers/AdminDashboardController.php';
 require_once __DIR__ . '/../controllers/ClientDashboardController.php';
 require_once __DIR__ . '/../controllers/AdminDashboardController.php';
@@ -38,6 +41,9 @@ $controladorMascota = new PetsController($modeloMascota);
 
 $modeloCita = new Date($conn); 
 $controladorCita = new DatesController($modeloCita);
+
+$modeloHistorial = new History($conn);
+$controladorHistorial = new HistoryController($modeloHistorial);
 
 $controladorAdminDashboard = new AdminDashboardController($modeloMascota, $modeloUsuario, $modeloCita);
 $controladorClientDashboard = new ClientDashboardController($modeloMascota, $modeloCita);
@@ -80,7 +86,15 @@ switch ($action) {
     case 'get_all_citas':
         $controladorCita->getAll();
         break;
+    
+    case 'register_history':
+       $controladorHistorial->create();
+       break;
 
+    case 'view_history':
+    $controladorHistorial->viewHistory();
+    break;
+    
     default:
         http_response_code(404);
         echo json_encode(["success" => false, "message" => "Acción no válida."]);

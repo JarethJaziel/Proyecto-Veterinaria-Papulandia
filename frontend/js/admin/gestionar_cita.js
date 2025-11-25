@@ -45,10 +45,10 @@ $(document).ready(function () {
             </p>
 
             <div class="d-flex gap-2 mt-3">
-                <button class="btn btn-outline-primary btn-sm btnHistorial smooth-btn" data-id="${cita.cita_id}" id="btnHistorial">
+                <button class="btn btn-outline-primary btn-sm btnHistorial smooth-btn" data-id="${cita.mascota_id}" id="btnHistorial">
                     Ver historial
                 </button>
-                <button class="btn btn-primary btn-sm btnProcedimiento smooth-btn" data-id="${cita.cita_id}" id="btnProcedimiento">
+                <button class="btn btn-primary btn-sm btnProcedimiento smooth-btn" data-id="${cita.mascota_id}" id="btnProcedimiento">
                     Agregar procedimiento
                 </button>
             </div>
@@ -81,14 +81,91 @@ $(document).ready(function () {
 
 
 
-    // Abrir modal historial
-    $(document).on("click", "#btnHistorial", function () {
-        $("#modalHistorial").modal("show");
+    let mascotaSeleccionada = null;
+
+    // Abrir modal historial y cargar historial
+$(document).on("click", ".btnHistorial", function () {
+    mascotaSeleccionada = $(this).data("id");
+
+    $("#modalHistorial").modal("show");
+
+    $.ajax({
+        url: RUTA_BASE + "backend/api/api.php?action=view_history",
+        method: "GET",
+        data: { mascota_id: mascotaSeleccionada },
+        dataType: "json"
+    })
+    .done(function (response) {
+        const contenedor = $("#contenedorHistorial");
+        contenedor.empty();
+
+        if (!response.success) {
+            contenedor.append(`<p class="text-danger">${response.message}</p>`);
+            return;
+        }
+
+        if (response.data.length === 0) {
+            contenedor.append(`<p class="text-muted">No hay historial para esta mascota.</p>`);
+            return;
+        }
+
+        response.data.forEach(item => {
+            const procHtml = `
+                <div class="mb-3 p-3 border rounded shadow-sm bg-light">
+                    <p class="mb-1"><strong>${item.fecha}</strong></p>
+                    <p class="mb-0">${item.procedimiento}</p>
+                </div>
+            `;
+
+            contenedor.append(procHtml);
+        });
+
+    })
+    .fail(function () {
+        $("#contenedorHistorial").html(`<p class="text-danger">Error al cargar historial.</p>`);
     });
+});
+
 
     // Abrir modal agregar procedimiento
-    $(document).on("click", "#btnProcedimiento", function () {
+    $(document).on("click", ".btnProcedimiento", function () {
+        mascotaSeleccionada = $(this).data("id");
         $("#modalAgregarProcedimiento").modal("show");
     });
+
+    // Enviar procedimiento
+    $(document).on("click", "#btnAgregarProcedimiento", function () {
+
+        const procedimiento = $("#textoProcedimiento").val().trim();
+
+        if (procedimiento.length === 0) {
+            alert("El procedimiento no puede estar vacío.");
+            return;
+        }
+
+        $.ajax({
+            url: RUTA_BASE + "backend/api/api.php?action=register_history",
+            method: "POST",
+            data: {
+                mascota_id: mascotaSeleccionada,
+                procedimiento: procedimiento
+            },
+            dataType: "json"
+        })
+            .done(function (response) {
+                if (response.success) {
+                    alert("Procedimiento agregado correctamente.");
+                    $("#modalAgregarProcedimiento").modal("hide");
+                    $("#textoProcedimiento").val("");
+                } else {
+                    alert("Error: " + response.message);
+                }
+            })
+            .fail(function () {
+                alert("Error en la petición AJAX.");
+            });
+
+    });
+
 
 });
