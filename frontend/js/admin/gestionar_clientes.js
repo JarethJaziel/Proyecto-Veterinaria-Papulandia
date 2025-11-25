@@ -135,3 +135,33 @@ function verCliente(modo, id = null, nombre = null, apellidos = null, correo = n
     // Borra todo lo relacionado a "new bootstrap.Modal(...)" y pon esto:
     $("#modalCliente").modal("show");
 }
+
+window.eliminarCliente = function(id) {
+
+    if (!confirm("¿Seguro que deseas eliminar este cliente? También se eliminarán sus mascotas y citas.")) {
+        return;
+    }
+
+    $.ajax({
+        url: RUTA_BASE + "backend/api/api.php?action=delete_user",
+        method: "POST",
+        data: { id: id },
+        dataType: "json"
+    })
+    .done(function(response) {
+
+        if (response.success) {
+            alert(response.message);
+            location.reload();  // recarga para actualizar lista
+        } else {
+            alert("Error: " + response.message);
+        }
+    })
+    .fail(function(xhr) {
+        console.error("Respuesta del servidor:", xhr.responseText);
+        alert("No se pudo completar la petición.");
+    });
+
+};
+
+

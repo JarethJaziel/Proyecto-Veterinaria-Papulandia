@@ -64,5 +64,13 @@ class User {
     return $result->fetch_assoc()['total'] ?? 0;
     }
 
+    public function deleteUser($id)    {
+        $sql = "DELETE FROM usuarios WHERE id = ?";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->bind_param("i", $id);
+        return $stmt->execute();
+    }
+
+
 }
 ?>
