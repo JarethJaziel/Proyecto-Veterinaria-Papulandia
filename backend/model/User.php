@@ -60,12 +60,20 @@ class User {
         return $stmt->execute();
     }
 
-    public function contarClientes() {
+    public function countClients() {
     $sql = "SELECT COUNT(*) AS total FROM usuarios WHERE tipo = 'cliente'";
     $result = $this->conn->query($sql);
 
     return $result->fetch_assoc()['total'] ?? 0;
     }
+
+    public function deleteUser($id)    {
+        $sql = "DELETE FROM usuarios WHERE id = ?";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->bind_param("i", $id);
+        return $stmt->execute();
+    }
+
 
 }
 ?>

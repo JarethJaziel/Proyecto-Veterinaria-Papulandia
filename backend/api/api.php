@@ -71,8 +71,13 @@ switch ($action) {
     case 'update_user':
         $controladorUsuario->updateUser();
         break;
-        
+
+    //Send client id in post
     case 'get_client_pets':
+        $controladorMascota->getByUser();
+        break;
+        
+    case 'get_client_dashboard':
         $controladorClientDashboard->getClienteDashboard();
         break;
 
@@ -95,6 +100,10 @@ switch ($action) {
     $controladorHistorial->viewHistory();
     break;
     
+    case 'delete_user':
+        $controladorUsuario->deleteUser();
+        break;
+        
     default:
         http_response_code(404);
         echo json_encode(["success" => false, "message" => "Acción no válida."]);
