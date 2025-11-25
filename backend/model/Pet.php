@@ -56,7 +56,7 @@ class Pet {
         return $resultado->fetch_all(MYSQLI_ASSOC);
     }
 
-    public function contarMascotas() {
+    public function countPets() {
     $sql = "SELECT COUNT(*) AS total FROM mascotas";
     $result = $this->conn->query($sql);
     

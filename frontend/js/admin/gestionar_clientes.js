@@ -27,10 +27,6 @@ $(document).ready(function () {
                             <i class="fas fa-paw"></i> Mascotas
                         </button>
 
-                        <button class="btn btn-warning btn-sm" onclick="verCitas(${cli.id})" title="Ver Historial">
-                            <i class="fas fa-calendar-alt"></i> Citas
-                        </button>
-
                         <button class="btn btn-primary btn-sm" 
                             onclick="verCliente('editar', ${cli.id}, '${cli.nombre}', '${cli.apellidos}', '${cli.correo}', '${cli.telefono}')">
                             <i class="fas fa-edit"></i> Editar

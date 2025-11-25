@@ -57,7 +57,7 @@ class User {
         return $stmt->execute();
     }
 
-    public function contarClientes() {
+    public function countClients() {
     $sql = "SELECT COUNT(*) AS total FROM usuarios WHERE tipo = 'cliente'";
     $result = $this->conn->query($sql);
 
