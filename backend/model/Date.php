@@ -63,9 +63,21 @@ class Date {
     }
 
     public function getAll() {
-        $sql = "SELECT id, mascota_id, fecha 
-                FROM citas 
-                ORDER BY fecha ASC";
+        $sql = "SELECT 
+            c.id AS id,
+            c.fecha,
+            c.mascota_id,
+            c.motivo AS motivo,
+            m.nombre AS nombre_mascota,
+            u.id AS usuario_id,
+            u.nombre AS nombre_usuario,
+            u.apellidos AS apellido_usuario
+
+        FROM citas c
+        INNER JOIN mascotas m ON c.mascota_id = m.id
+        INNER JOIN usuarios u ON m.usuario_id = u.id
+        ORDER BY c.fecha ASC";
+
         $stmt = $this->conn->prepare($sql);
 
         if ($stmt === false) {
@@ -76,10 +88,6 @@ class Date {
         $result = $stmt->get_result();
 
         return $result ? $result->fetch_all(MYSQLI_ASSOC) : [];
-    }
-
-    public function getTodayDates(){
-        //TODO
     }
 
     public function getNextPetsDates($array_de_ids_mascota) {
@@ -118,12 +126,40 @@ class Date {
         return $citasMap;
     }
 
-    public function contarCitasHoy() {
+    public function countUpcomingDates() {
    
     $sql = "SELECT COUNT(*) AS total FROM citas WHERE DATE(fecha) >= CURDATE()";
     $result = $this->conn->query($sql);
 
     return $result->fetch_assoc()['total'] ?? 0;
+    }
+
+    public function getUpcomingDates() {
+        // Agregamos alias (c, m, u) y los JOINs para traer nombres y correos
+        $sql = "SELECT 
+                    c.id AS cita_id, 
+                    c.fecha, 
+                    c.motivo, 
+                    m.nombre AS nombre_mascota,
+                    u.nombre AS nombre_usuario, 
+                    u.apellidos AS apellido_usuario, 
+                    u.correo AS email_usuario
+                FROM citas c
+                INNER JOIN mascotas m ON c.mascota_id = m.id
+                INNER JOIN usuarios u ON m.usuario_id = u.id
+                WHERE DATE(c.fecha) >= CURDATE()
+                ORDER BY c.fecha ASC";
+
+        $stmt = $this->conn->prepare($sql);
+
+        if ($stmt === false) {
+            return [];
+        }
+
+        $stmt->execute();
+        $result = $stmt->get_result();
+
+        return $result ? $result->fetch_all(MYSQLI_ASSOC) : [];
     }
 
 }

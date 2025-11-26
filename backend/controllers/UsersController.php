@@ -146,27 +146,29 @@ class UsersController {
         }
     }
 
-    public function deleteUser(){
-        if($this->validateAdmin()){
+    public function deleteUser() {
+
+        if ($this->validateAdmin()) {
             $this->enviarRespuesta(403, false, "Acceso no autorizado.");
             return;
         }
 
-        $id = $_POST['id'] ?? '';
+        $id = $_POST['id'] ?? null;
 
-        if (empty($id)) {
-            $this->enviarRespuesta(400, false, "ID de usuario faltante.");
+        if (!$id) {
+            $this->enviarRespuesta(400, false, "ID no proporcionado.");
             return;
         }
 
-        $exito = $this->modeloUsuario->delete($id);
-        if ($exito) {
-            $this->enviarRespuesta(200, true, "Usuario eliminado con éxito.");
-        } else {
-            $this->enviarRespuesta(500, false, "Error al eliminar el usuario de la base de datos.");
-        }   
+        $resultado = $this->modeloUsuario->deleteUser($id);
         
-    }   
+
+        if ($resultado) {
+            $this->enviarRespuesta(200, true, "Usuario eliminado correctamente.");
+        } else {
+            $this->enviarRespuesta(500, false, "Error al eliminar el usuario.");
+        }
+    }
 
     private function validateAdmin(){
         return (!isset($_SESSION['usuario']) || !isset($_SESSION['usuario']['id'])) 

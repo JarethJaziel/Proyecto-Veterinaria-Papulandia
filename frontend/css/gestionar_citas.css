@@ -1,0 +1,26 @@
+/* Fondo sólido para tarjetas */
+.cita-card {
+    background: #ffffff;
+    border-radius: 12px;
+    transition: all 0.25s ease;
+    border: 1px solid #e5e7eb;
+}
+
+/* Hover suave */
+.cita-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+}
+
+/* Mejor apariencia para botones */
+.smooth-btn {
+    border-radius: 8px !important;
+    padding: 6px 14px !important;
+    transition: all 0.2s ease;
+}
+
+/* Hover agradable en botones */
+.smooth-btn:hover {
+    transform: translateY(-2px);
+    opacity: 0.9;
+}

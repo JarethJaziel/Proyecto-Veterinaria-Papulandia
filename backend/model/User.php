@@ -31,7 +31,6 @@ class User {
         return $result->fetch_all(MYSQLI_ASSOC); 
     }
 
-    
     public function create($nombres, $apellidos, $correo, $hash_contrasena, $tipo, $telefono) {
         $sql = "INSERT INTO usuarios (nombre, apellidos, correo, contrasena, tipo, telefono) 
                 VALUES (?, ?, ?, ?, ?, ?)";
@@ -68,20 +67,21 @@ class User {
         );
         return $stmt->execute();
     }
-
-    public function delete($id) {
-        $sql = "DELETE FROM usuarios WHERE id = ?";
-        $stmt = $this->conn->prepare($sql);
-        $stmt->bind_param("i", $id);
-        return $stmt->execute();
-    }
     
-    public function contarClientes() {
+    public function countClients() {
     $sql = "SELECT COUNT(*) AS total FROM usuarios WHERE tipo = 'cliente'";
     $result = $this->conn->query($sql);
 
     return $result->fetch_assoc()['total'] ?? 0;
     }
+
+    public function deleteUser($id)    {
+        $sql = "DELETE FROM usuarios WHERE id = ?";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->bind_param("i", $id);
+        return $stmt->execute();
+    }
+
 
 }
 ?>

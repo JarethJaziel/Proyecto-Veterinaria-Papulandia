@@ -26,6 +26,23 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto align-items-center">
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="pages/cliente/dashboard_cliente.html#inicio">
+                            <i class="bi bi-paw me-1"></i> Inicio
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="pages/cliente/dashboard_cliente.html#misMascotas">
+                            <i class="bi bi-paw me-1"></i> Mis Mascotas
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="pages/cliente/dashboard_cliente.html#misCitas">
+                            <i class="bi bi-calendar-event me-1"></i> Mis Citas
+                        </a>
+                    </li>
+
                     <li class="nav-item">
                         <span class="user-info">
                             <i class="bi bi-person-circle me-1"></i>
@@ -44,7 +61,7 @@
     </nav>
 
     <!-- Header del Dashboard -->
-    <div class="dashboard-header">
+    <div class="dashboard-header" id="inicio">
         <div class="container">
             <h1>Bienvenido al panel de acción</h1>
             <p>Gestiona tus mascotas y agenda citas fácilmente</p>
@@ -54,8 +71,8 @@
     <!-- Contenido Principal -->
     <main class="container py-5">
         <!-- Opciones -->
-        <div class="row g-4 mb-5">
-            <div class="col-md-6 col-lg-3">
+        <div class="row g-4 mb-5 justify-content-center">
+            <div class="col-md-5 col-lg-3">
                 <div class="dashboard-card card-pet">
                     <div class="card-body text-center p-4">
                         <div class="card-icon">
@@ -82,19 +99,6 @@
             </div>
 
             <div class="col-md-6 col-lg-3">
-                <div class="dashboard-card card-history">
-                    <div class="card-body text-center p-4">
-                        <div class="card-icon">
-                            <i class="fas fa-history"></i>
-                        </div>
-                        <h5 class="card-title">Historial</h5>
-                        <p class="card-text text-muted">Revisa el historial de tus mascotas</p>
-                        <a href="historial.php" class="btn btn-dashboard">Ver Historial</a>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-md-6 col-lg-3">
                 <div class="dashboard-card card-profile">
                     <div class="card-body text-center p-4">
                         <div class="card-icon">
@@ -102,17 +106,16 @@
                         </div>
                         <h5 class="card-title">Mi Perfil</h5>
                         <p class="card-text text-muted">Gestiona tu información personal</p>
-                        <a href="perfil.php" class="btn btn-dashboard">Editar Perfil</a>
+                        <a href="pages/perfil.php" class="btn btn-dashboard">Editar Perfil</a>
                     </div>
                 </div>
             </div>
         </div>
 
         <!-- Sección de Mascotas Recientes -->
-        <div class="pets-section">
+        <div class="pets-section" id="misMascotas">
             <div class="d-flex justify-content-between align-items-center mb-4">
                 <h3 class="mb-0">Tus Mascotas</h3>
-                <a href="mascotas.php" class="btn btn-outline-primary">Ver Todas</a>
             </div>
             
             <div class="row g-4" style="display: none;">
@@ -154,10 +157,9 @@
         </div>
 
         <!-- Próximas Citas -->
-        <div class="citas-section">
+        <div class="citas-section" id="misCitas">
             <div class="d-flex justify-content-between align-items-center mb-4">
                 <h3 class="mb-0">Próximas Citas</h3>
-                <a href="citas.php" class="btn btn-outline-primary">Ver Todas</a>
             </div>
             
             <div class="row g-4">
@@ -196,6 +198,50 @@
             </div>
         </div>
     </main>
+
+    <!-- Modal Historial -->
+    <div class="modal fade" id="modalHistorial" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-lg"> <div class="modal-content">
+                <div class="modal-header bg-info text-white">
+                    <h5 class="modal-title">
+                        <i class="fas fa-notes-medical me-2"></i>Historial Médico
+                    </h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                
+                <div class="modal-body">
+                    <div id="loadingHistorial" class="text-center py-3 d-none">
+                        <div class="spinner-border text-info" role="status"></div>
+                    </div>
+
+                    <div class="table-responsive">
+                        <table class="table table-hover align-middle">
+                            <thead class="table-light">
+                                <tr>
+                                    <th>Fecha</th>
+                                    <th>Observación</th>
+                                    <th>Veterinario</th>
+                                </tr>
+                            </thead>
+                            <tbody id="tablaHistorialBody">
+                            </tbody>
+                        </table>
+                    </div>
+                    
+                    <div id="sinHistorialMsg" class="alert alert-light text-center d-none">
+                        No hay registros médicos para esta mascota.
+                    </div>
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                    <button type="button" class="btn btn-primary" id="btnImprimirHistorial">
+                        <i class="fas fa-print"></i> Imprimir
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <!-- Footer -->
     <footer>

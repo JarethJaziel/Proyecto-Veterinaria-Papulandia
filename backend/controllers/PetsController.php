@@ -53,6 +53,38 @@ class PetsController {
         }
     }
 
+    public function getByUser() {
+        if ($this->validateUser()) {
+            $this->enviarRespuesta(401, false, "Acceso no autorizado. Debes iniciar sesión.");
+            return;
+        }
+
+        $cliente_id = $_POST['cliente_id'] ?? '';
+        if (empty($cliente_id)) {
+            $this->enviarRespuesta(400, false, "Falta el ID del usuario.");
+            return;
+        }
+        $mascotas = $this->modeloMascota->getByUserId($cliente_id);
+
+        $this->enviarRespuesta(200, true, "Mascotas del usuario obtenidas con éxito.", [
+            'mascotas' => $mascotas
+        ]);
+    }
+
+
+    public function getAll(){
+        
+        $clientes = $this->modeloMascota->getAll();
+
+        $this->enviarRespuesta(200,true,
+        "Lista de clientes y mascotas obtenida exitosamente.",
+      [
+                            "clientes" => $clientes
+                        ]
+        );
+
+    }
+
     
     private function validateUser(){
         return !isset($_SESSION['usuario']) || !isset($_SESSION['usuario']['id']);

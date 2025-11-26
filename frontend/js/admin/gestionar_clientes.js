@@ -23,12 +23,8 @@ $(document).ready(function () {
                     <td>${cli.correo}</td>
                     <td>${cli.telefono}</td>
                     <td class="text-center">
-                        <button class="btn btn-success btn-sm" onclick="verMascotas(${cli.id})" title="Ver Mascotas">
+                        <button class="btn btn-success btn-sm" onclick="verMascotas(${cli.id}, '${cli.nombre}')" title="Ver Mascotas">
                             <i class="fas fa-paw"></i> Mascotas
-                        </button>
-
-                        <button class="btn btn-warning btn-sm" onclick="verCitas(${cli.id})" title="Ver Historial">
-                            <i class="fas fa-calendar-alt"></i> Citas
                         </button>
 
                         <button class="btn btn-primary btn-sm" 
@@ -93,11 +89,74 @@ $(document).ready(function () {
 
 });
 
-function verMascotas(clienteId) {
-
+function verMascotas(clienteId, clienteNombre) {
+    console.log("Ver mascotas del cliente ID:", clienteId);
+    $.ajax({
+        url: RUTA_BASE + 'backend/api/api.php?action=get_client_pets',
+        method: 'POST',
+        data: { cliente_id: clienteId },
+        dataType: 'json',
+        success: function(result) {
+            const msgDiv = $('#responseMessageCliente');
+            msgDiv.text(result.message)
+                    .removeClass('text-success text-danger')
+                     .addClass(result.success ? 'text-success' : 'text-danger');
+            if (result.success) {
+                $('#nombreClienteMasc').text(`Mascotas de ${clienteNombre}`);
+                cargarMascotasEnModal(result.mascotas);
+            }
+        },
+        error: function(xhr) {
+            let msg = "Error desconocido.";
+            try {
+                const json = JSON.parse(xhr.responseText);
+                msg = json.message ?? msg;
+            } catch (e) {
+                console.error("No se pudo parsear JSON del error", e);
+            }
+            const msgDiv = $('#responseMessageCliente');
+            msgDiv.text(msg)
+                .removeClass('text-success')
+                .addClass('text-danger');
+        },
+        complete: function() {
+            
+        }
+    });
 }
 
+function cargarMascotasEnModal(mascotas) {
+
+    const contenedor = $('#contenedorMascotas');
+
+    contenedor.empty();
+
+    if (!mascotas || mascotas.length === 0) {
+        contenedor.append('<div class="col-12 text-center text-muted">No hay mascotas registradas.</div>');
+    } else {
+        mascotas.forEach(masc => {
+            let cardHTML = `
+                <div class="col-6 col-md-4">
+                    <div class="card h-100 shadow-sm select-mascota-card" style="cursor:pointer;" data-id="${masc.id}">
+                        <div class="card-body p-2 text-center">
+                            <h6 class="card-title mb-1 fw-bold">${masc.nombre}</h6>
+                            <small class="text-muted">${masc.especie || 'Sin raza'}</small>
+                            <small class="text-muted">${masc.raza || 'Sin raza'}</small>
+                            
+                        </div>
+                    </div>
+                </div>
+            `;
+
+            contenedor.append(cardHTML);
+        });
+    }
+
+    $('#modalMascotas').modal("show");   
+}
 function verCliente(modo, id = null, nombre = null, apellidos = null, correo = null, telefono = null) {
+
+    $('#responseMessageCliente').text('').removeClass('text-success text-danger');
 
     $("#formCliente")[0].reset();
     
@@ -135,3 +194,33 @@ function verCliente(modo, id = null, nombre = null, apellidos = null, correo = n
     // Borra todo lo relacionado a "new bootstrap.Modal(...)" y pon esto:
     $("#modalCliente").modal("show");
 }
+
+window.eliminarCliente = function(id) {
+
+    if (!confirm("¿Seguro que deseas eliminar este cliente? También se eliminarán sus mascotas y citas.")) {
+        return;
+    }
+
+    $.ajax({
+        url: RUTA_BASE + "backend/api/api.php?action=delete_user",
+        method: "POST",
+        data: { id: id },
+        dataType: "json"
+    })
+    .done(function(response) {
+
+        if (response.success) {
+            alert(response.message);
+            location.reload();  // recarga para actualizar lista
+        } else {
+            alert("Error: " + response.message);
+        }
+    })
+    .fail(function(xhr) {
+        console.error("Respuesta del servidor:", xhr.responseText);
+        alert("No se pudo completar la petición.");
+    });
+
+};
+
+

@@ -26,14 +26,14 @@ class ClientDashboardController {
         }
 
         // Sacamos los IDs de las mascotas que encontramos
-        $mascota_ids = array_map(fn($m) => $m['mascota_id'], $mascotas);
+        $mascota_ids = array_map(fn($m) => $m['id'], $mascotas);
         
         // Le pedimos al modelo Cita las próximas citas para ESOS IDs
         $proximasCitasMap = $this->modeloCita->getNextPetsDates($mascota_ids);
 
         // Recorremos las mascotas y les "pegamos" su próxima cita
         foreach ($mascotas as $index => $mascota) {
-            $id = $mascota['mascota_id'];
+            $id = $mascota['id'];
             if (isset($proximasCitasMap[$id])) {
                 // Si encontramos cita para esta mascota, la añadimos
                 $mascotas[$index]['proxima_cita'] = $proximasCitasMap[$id];
