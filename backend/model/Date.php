@@ -27,6 +27,16 @@ class Date {
         return $stmt->execute();
     }
 
+    public function dateExist($fecha_hora) {
+        $sql = "SELECT COUNT(*) AS total FROM citas WHERE fecha = ?";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->bind_param("s", $fecha_hora);
+        $stmt->execute();
+        $resultado = $stmt->get_result();
+        $fila = $resultado->fetch_assoc();
+        return $fila['total'] > 0; // true si ya existe
+    }
+
     public function getByUserId($usuario_id) {
         $sql = "SELECT c.id, c.mascota_id, c.fecha, m.nombre AS nombre_mascota, m.especie
                 FROM citas c

@@ -37,6 +37,11 @@ class DatesController {
 
         $fecha_hora = $fecha . ' ' . $hora . ':00';
 
+        if ($this->modeloCita->dateExist($fecha_hora)) {
+            $this->enviarRespuesta(409, false, "Ya existe una cita programada para la fecha y hora seleccionadas.");
+            return;
+        }
+
         $exito = $this->modeloCita->create($mascota_id, $motivo, $fecha_hora);
 
         if ($exito) {
