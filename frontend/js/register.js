@@ -30,7 +30,7 @@
                 const msgDiv = $('#responseMessage');
                 msgDiv.removeClass('text-success text-danger').text("");
 
-                // --------- Validar apellidos: EXACTAMENTE 2 ---------
+              /*  // --------- Validar apellidos: EXACTAMENTE 2 ---------
                 const apellidos = $('#apellidos').val().trim();
                 const partes = apellidos.split(/\s+/);
 
@@ -50,7 +50,7 @@
                     msgDiv.text('Por favor ingresa un correo electrónico válido.')
                           .addClass('text-danger');
                     return;
-                }
+                }*/
 
                 // Si llegan aquí, NO detenemos el form → entra AJAX
                 e.preventDefault();
@@ -72,11 +72,19 @@
                     },
 
                     error: function(jqXHR, textStatus) {
-                        console.error("AJAX falló. Razón: " + textStatus);
-                        console.error("Respuesta del servidor:");
-                        console.error(jqXHR.responseText);
+                        const msgDiv = $('#responseMessage');
+                        let msg = "Error desconocido.";
 
-                        alert('Ocurrió un error. Revisa consola para más detalles.');
+                        try {
+                            const respuesta = JSON.parse(jqXHR.responseText);
+                            msg = respuesta.message || msg;
+                        } catch (e) {
+                            msg = "Error en el servidor.";
+                        }
+
+                        msgDiv.text(msg)
+                            .removeClass('text-success')
+                            .addClass('text-danger');
                     }
                 });
             });

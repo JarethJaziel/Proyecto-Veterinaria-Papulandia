@@ -35,6 +35,7 @@ class UsersController {
     }
 
     public function register() {
+
         $nombres = $_POST['nombres'] ?? '';
         $apellidos = $_POST['apellidos'] ?? '';
         $correo = $_POST['email'] ?? '';
@@ -44,6 +45,21 @@ class UsersController {
 
         if (empty($nombres) || empty($apellidos) || empty($correo) || empty($contrasena_form)) {
             $this->enviarRespuesta(400, false, "Faltan datos obligatorios.");
+            return;
+        }
+
+        // --------- Validar apellidos: EXACTAMENTE 2 ---------
+        $apellidos = trim($_POST['apellidos'] ?? '');
+        $partes = preg_split('/\s+/', $apellidos); // separa por uno o más espacios
+
+        if (count($partes) !== 2) {
+            $this->enviarRespuesta(400, false, "Debes ingresar exactamente dos apellidos.");
+            return;
+        }
+        
+        // Validar correo
+        if (!filter_var($correo, FILTER_VALIDATE_EMAIL)) {
+            $this->enviarRespuesta(400, false, "El correo no es válido.");
             return;
         }
 
