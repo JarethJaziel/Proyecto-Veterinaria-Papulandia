@@ -72,7 +72,6 @@ switch ($action) {
         $controladorUsuario->updateUser();
         break;
 
-    //Send client id in post
     case 'get_client_pets':
         $controladorMascota->getByUser();
         break;
@@ -110,6 +109,10 @@ switch ($action) {
     
     case 'delete_user':
         $controladorUsuario->deleteUser();
+        break;
+
+    case 'delete_pet':
+        $controladorMascota->deletePet();
         break;
         
     default:

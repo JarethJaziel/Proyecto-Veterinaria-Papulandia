@@ -53,13 +53,36 @@ class PetsController {
         }
     }
 
+    public function deletePet(){
+        if ($this->validateUser()) {
+            $this->enviarRespuesta(401, false, "Acceso no autorizado. Debes iniciar sesión.");
+            return;
+        }
+
+        $pet_id = $_POST['pet_id'] ?? null;
+
+        if (!$pet_id) {
+            $this->enviarRespuesta(400, false, "ID de la mascota no proporcionado.");
+            return;
+        }
+
+        $resultado = $this->modeloMascota->deletePet($pet_id);
+
+        if ($resultado) {
+            $this->enviarRespuesta(200, true, "Mascota eliminada correctamente.");
+        } else {
+            $this->enviarRespuesta(500, false, "Error al eliminar la mascota.");
+        }
+    }
+
     public function getByUser() {
         if ($this->validateUser()) {
             $this->enviarRespuesta(401, false, "Acceso no autorizado. Debes iniciar sesión.");
             return;
         }
 
-        $cliente_id = $_POST['cliente_id'] ?? '';
+        $cliente_id = $_SESSION['usuario']['id'];
+        
         if (empty($cliente_id)) {
             $this->enviarRespuesta(400, false, "Falta el ID del usuario.");
             return;
