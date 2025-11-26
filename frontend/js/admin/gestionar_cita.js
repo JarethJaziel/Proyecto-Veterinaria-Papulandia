@@ -64,16 +64,6 @@ $(document).ready(function () {
 
 
 
-
-
-
-
-
-
-
-
-
-
     let mascotaSeleccionada = null;
 
     // Abrir modal historial y cargar historial

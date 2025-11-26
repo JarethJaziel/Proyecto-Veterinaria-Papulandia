@@ -197,7 +197,7 @@ function verCliente(modo, id = null, nombre = null, apellidos = null, correo = n
 
 window.eliminarCliente = function(id) {
 
-    if (!confirm("¿Seguro que deseas eliminar este cliente? También se eliminarán sus mascotas y citas.")) {
+    if (!confirm("¿Seguro que deseas eliminar este cliente? También se eliminarán sus mascotas, citas e historial.")) {
         return;
     }
 
