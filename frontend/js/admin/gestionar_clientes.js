@@ -90,6 +90,8 @@ $(document).ready(function () {
 });
 
 function verMascotas(clienteId, clienteNombre) {
+    $("#modalMascotas").data("cliente-id", clienteId);
+    $("#modalMascotas").data("cliente-nombre", clienteNombre);
     console.log("Ver mascotas del cliente ID:", clienteId);
     $.ajax({
         url: RUTA_BASE + 'backend/api/api.php?action=get_client_pets',
@@ -138,6 +140,11 @@ function cargarMascotasEnModal(mascotas) {
             let cardHTML = `
                 <div class="col-6 col-md-4">
                     <div class="card h-100 shadow-sm select-mascota-card" style="cursor:pointer;" data-id="${masc.id}">
+                        <button class="btn btn-sm btn-danger delete-mascota-btn" 
+                                style="position:absolute; top:5px; right:5px; z-index:10;"
+                                data-id="${masc.id}">
+                            <i class="fas fa-trash"></i>
+                        </button>
                         <div class="card-body p-2 text-center">
                             <h6 class="card-title mb-1 fw-bold">${masc.nombre}</h6>
                             <small class="text-muted">${masc.especie || 'Sin raza'}</small>
@@ -154,6 +161,39 @@ function cargarMascotasEnModal(mascotas) {
 
     $('#modalMascotas').modal("show");   
 }
+
+$(document).on("click", ".delete-mascota-btn", function() {
+
+    const idMascota = $(this).data("id");
+
+    if (!confirm("¿Seguro que deseas eliminar esta mascota? Se eliminarán las citas y el historial de la mascota.")) return;
+
+    $.ajax({
+        url: RUTA_BASE + "backend/api/api.php?action=delete_pet",
+        type: "POST",
+        data: { pet_id: idMascota },
+        dataType: "json",
+
+        success: function(response) {
+            if (response.success) {
+                alert("Mascota eliminada correctamente");
+                const modal = $("#modalMascotas");
+                const clienteId = modal.data("cliente-id");
+                const clienteNombre = modal.data("cliente-nombre");
+
+                verMascotas(clienteId, clienteNombre);
+            } else {
+                alert(response.message);
+            }
+        },
+
+        error: function(xhr) {
+            console.error(xhr.responseText);
+            alert("Error al intentar eliminar la mascota.");
+        }
+    });
+});
+
 function verCliente(modo, id = null, nombre = null, apellidos = null, correo = null, telefono = null) {
 
     $('#responseMessageCliente').text('').removeClass('text-success text-danger');
