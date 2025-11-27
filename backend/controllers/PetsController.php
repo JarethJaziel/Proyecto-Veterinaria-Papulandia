@@ -81,7 +81,11 @@ class PetsController {
             return;
         }
 
-        $cliente_id = $_SESSION['usuario']['id'];
+        if($_SESSION['usuario']['tipo'] === 'cliente'){
+            $cliente_id = $_SESSION['usuario']['id'];
+        } else {
+            $cliente_id = $_GET['cliente_id'] ?? null;
+        }
         
         if (empty($cliente_id)) {
             $this->enviarRespuesta(400, false, "Falta el ID del usuario.");

@@ -95,7 +95,7 @@ function verMascotas(clienteId, clienteNombre) {
     console.log("Ver mascotas del cliente ID:", clienteId);
     $.ajax({
         url: RUTA_BASE + 'backend/api/api.php?action=get_client_pets',
-        method: 'POST',
+        method: 'GET',
         data: { cliente_id: clienteId },
         dataType: 'json',
         success: function(result) {
